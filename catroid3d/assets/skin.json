@@ -1,0 +1,29 @@
+{
+     com.badlogic.gdx.graphics.g2d.BitmapFont: {  
+	  normaltext: { file: arial25.fnt },  
+	  titletext: { file: impact50.fnt },
+	  },
+	 com.badlogic.gdx.graphics.Color: {  
+      red: { a: 1, b: 0, g: 0, r: 1 },  
+      green: { a: 1, b: 0, g: 1, r: 0 },  
+      blue: { a: 1, b: 1, g: 0, r: 0 },  
+      white: { hex: "FFFFFF" },  
+      black: { hex: "000000" } 
+     },
+     com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {  
+      default: { font: normaltext, fontColor: white },  
+      normal-text: { font: normaltext, fontColor: white },  
+      title-text: { font: titletext, fontColor: red },  
+     },
+     com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {  
+      default: { up: button, down: button_pressed, checked: button_pressed, disabled: button_disabled },  
+      transparent: { },
+      move-camera-button: { up: move_camera, down: move_camera_pressed, checked: move_camera_pressed },
+      move-object-button: { up: move_object, down: move_object_pressed, checked: move_object_pressed },
+      ground-button: { up: ground, down: ground_pressed, checked: ground_pressed },
+      add-ground-button: { up: add_ground, down: add_ground_pressed, checked: add_ground_pressed },
+      remove-ground-button: { up: remove_ground, down: remove_ground_pressed, checked: remove_ground_pressed },
+      add-object-button: { up: add_object, down: add_object_pressed, checked: add_object_pressed },            
+     }, 
+	
+}

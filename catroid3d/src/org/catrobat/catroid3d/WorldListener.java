@@ -22,111 +22,154 @@
  */
 package org.catrobat.catroid3d;
 
-import android.util.Log;
+import org.catrobat.catroid3d.common.Constants.MODEL;
+import org.catrobat.catroid3d.common.Constants.TEXTURE;
+import org.catrobat.catroid3d.content.BoxAssetObject;
+import org.catrobat.catroid3d.content.ComplexAssetObject;
+import org.catrobat.catroid3d.content.Object;
+import org.catrobat.catroid3d.content.Object.RENDER_TYPE;
+import org.catrobat.catroid3d.content.Object.TEXTURE_TYPE;
+import org.catrobat.catroid3d.content.SphereAssetObject;
+import org.catrobat.catroid3d.io.StorageHandler;
+import org.catrobat.catroid3d.physics.World;
+import org.catrobat.catroid3d.ui.screen.CustomRenderableSorter;
+import org.catrobat.catroid3d.ui.screen.MainMenuScreen;
+import org.catrobat.catroid3d.ui.screen.ProjectBuildScreen;
+import org.catrobat.catroid3d.utils.Log;
+import org.catrobat.catroid3d.utils.Math;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.VertexAttributes.Usage;
-import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.graphics.g3d.Environment;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
-import com.badlogic.gdx.graphics.g3d.lights.DirectionalLight;
-import com.badlogic.gdx.graphics.g3d.lights.Lights;
-import com.badlogic.gdx.graphics.g3d.materials.IntAttribute;
-import com.badlogic.gdx.graphics.g3d.materials.Material;
-import com.badlogic.gdx.graphics.g3d.materials.TextureAttribute;
-import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
+import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
+import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
+import com.badlogic.gdx.graphics.g3d.utils.DefaultShaderProvider;
+import com.badlogic.gdx.graphics.g3d.utils.DefaultTextureBinder;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
-import com.badlogic.gdx.graphics.g3d.utils.TextureDescriptor;
+import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 public class WorldListener implements ApplicationListener {
 
-	private PerspectiveCamera camera;
+	public PerspectiveCamera movingCamera, collisionCamera;
 	private ModelBatch modelBatch;
-	private Lights lights;
-	private CameraInputController cameraController;
-	private AssetManager assets;
+	private RenderContext renderContext;
 	private Array<ModelInstance> instances = new Array<ModelInstance>();
 	private boolean loading;
 	private ModelBuilder modelBuilder = new ModelBuilder();
 	private boolean showMainMenu = true;
 	private MainMenuScreen mainMenuScreen;
+	private ProjectBuildScreen projectBuildScreen;
+	private World world;
+	private Object groundObject;
+	private Object skyObject;
+	private Environment environment;
 
 	@Override
 	public void create() {
-		modelBatch = new ModelBatch();
+		StorageHandler.getInstance().createAssetManager();
+		StorageHandler.getInstance().loadAllAssets();
+		renderContext = new RenderContext(new DefaultTextureBinder(DefaultTextureBinder.ROUNDROBIN, 1));
+		modelBatch = new ModelBatch(renderContext, new DefaultShaderProvider(), new CustomRenderableSorter());
 
-		lights = new Lights();
-		lights.ambientLight.set(0.4f, 0.4f, 0.4f, 1f);
-		lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
+		world = new World();
 
-		camera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		camera.position.set(10f, 10f, 10f);
-		camera.lookAt(0, 0, 0);
-		camera.near = 0.1f;
-		camera.far = 300f;
-		camera.update();
+		environment = new Environment();
+		environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.6f, 0.6f, 0.6f, 1f));
+		environment.add(new DirectionalLight().set(0.9f, 0.9f, 0.9f, -1f, -0.8f, -0.2f));
 
-		cameraController = new CameraInputController(camera);
-		Gdx.input.setInputProcessor(cameraController);
+		movingCamera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		movingCamera.position.set(700f, 500f, 700f);
 
-		assets = new AssetManager();
-		assets.load("data/Helicopter.g3db", Model.class);
-		assets.load("data/ship.g3db", Model.class);
-		assets.load("data/rock_texture.jpg", Texture.class);
-		assets.load("data/cloud.jpg", Texture.class);
+		movingCamera.lookAt(0, 0, 0);
+		movingCamera.near = 0.0000001f;
+		movingCamera.far = 1000;
+		movingCamera.update();
+
+		collisionCamera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		collisionCamera.position.set(400f, 400f, 550f);
+		collisionCamera.lookAt(0, 0, 0);
+		//		collisionCamera.near = 0.0001f;
+		collisionCamera.far = 1300;
+		collisionCamera.update();
+
 		mainMenuScreen = new MainMenuScreen(this);
 		mainMenuScreen.show();
-		mainMenuScreen.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		loading = true;
 	}
 
 	private void doneLoading() {
-		Model ship = assets.get("data/ship.g3db", Model.class);
-		ModelInstance shipInstance = new ModelInstance(ship);
-		shipInstance.transform.setToTranslation(-5f, 0f, 5f);
-		instances.add(shipInstance);
+		//		Object groundPlane = new BoxAssetObject("groundPlane", 0f, Math.createPositionMatrix(0f, -2f, 0f), 10000000f,
+		//				1f, 10000000f, TEXTURE.TEXTURE_GRASS_01);
+		//		groundPlane.setRenderType(RENDER_TYPE.GROUND);
+		//		//		world.addEntity(groundPlane.createEntityObject(), (short) 2, (short) 1);
+		//		world.addEntity(groundPlane.createEntityObject());
+		groundObject = new BoxAssetObject("Ground", 0f, Math.createPositionMatrix(0f, -1f, 0f), 1000f, 1f, 1000f,
+				TEXTURE.TEXTURE_GRASS_01);
+		groundObject.setRenderType(RENDER_TYPE.GROUND);
+		world.addEntity(groundObject.createEntityObject());
 
-		Model helicopter = assets.get("data/Helicopter.g3db", Model.class);
-		ModelInstance helicopterInstance = new ModelInstance(helicopter);
-		helicopterInstance.transform.setToTranslation(5f, 0f, -5f);
-		instances.add(helicopterInstance);
+		for (int i = 0; i < 200; i++) {
+			Object grass01 = new ComplexAssetObject("Gras01" + i, 0f, Math.createRandomPosition(-500, 500),
+					MODEL.MODEL_GRASS_01);
+			grass01.setHasRigidBody(false);
+			world.addEntity(grass01.createEntityObject());
+			Object grass02 = new ComplexAssetObject("Gras02" + i, 0f, Math.createRandomPosition(-500, 500),
+					MODEL.MODEL_GRASS_02);
+			grass02.setHasRigidBody(false);
+			world.addEntity(grass02.createEntityObject());
+		}
 
-		Model ground = modelBuilder.createBox(100f, 1f, 100f, new Material(), Usage.Position | Usage.Normal
-				| Usage.TextureCoordinates);
-		ModelInstance groundInstance = new ModelInstance(ground);
-		groundInstance.transform.setToTranslation(-5f, -5f, 0f);
-		Texture rock = assets.get("data/rock_texture.jpg", Texture.class);
-		TextureDescriptor desc = new TextureDescriptor(rock, GL10.GL_INVALID_VALUE, GL10.GL_INVALID_VALUE,
-				GL20.GL_REPEAT, GL20.GL_REPEAT);
-		groundInstance.materials.first().set(new TextureAttribute(TextureAttribute.Diffuse, desc));
-		instances.add(groundInstance);
+		for (int i = 0; i < 10; i++) {
+			Object plant01 = new ComplexAssetObject("Plant01" + i, 0f, Math.createRandomPosition(-400, 400),
+					MODEL.MODEL_TROPICAL_PLANT_01);
+			plant01.setHasRigidBody(false);
+			world.addEntity(plant01.createEntityObject());
+			Object plant02 = new ComplexAssetObject("Plant02" + i, 0f, Math.createRandomPosition(-400, 400),
+					MODEL.MODEL_TROPICAL_PLANT_02);
+			plant02.setHasRigidBody(false);
+			world.addEntity(plant02.createEntityObject());
+		}
 
-		Model sky = modelBuilder.createSphere(500f, 500f, 500f, 20, 20, new Material(), Usage.Position
-				| Usage.TextureCoordinates);
-		ModelInstance skyInstance = new ModelInstance(sky);
-		skyInstance.transform.setToTranslation(-10f, 0f, 10f);
-		skyInstance.materials.first().set(TextureAttribute.createDiffuse(assets.get("data/cloud.jpg", Texture.class)));
-		skyInstance.materials.first().set(new IntAttribute(IntAttribute.CullFace, 0));
-		instances.add(skyInstance);
+		Object barrel01 = new ComplexAssetObject("Barrel01", 10f, Math.createPositionMatrix(0f, 0f, -100f),
+				MODEL.MODEL_BIG_WOOD_BARREL);
+		barrel01.setTextureType(TEXTURE_TYPE.NONE);
+		world.addEntity(barrel01.createEntityObject());
+
+		Object barrel02 = new ComplexAssetObject("Barrel02", 10f, Math.createPositionMatrix(0f, -30f, -100f),
+				MODEL.MODEL_BIG_WOOD_BARREL);
+		barrel02.setTextureType(TEXTURE_TYPE.NONE);
+		world.addEntity(barrel02.createEntityObject());
+
+		Object tree01 = new ComplexAssetObject("Tree01", 0f, Math.createPositionMatrix(50f, 0f, -60f),
+				MODEL.MODEL_PALM_TREE_01);
+		world.addEntity(tree01.createEntityObject());
+
+		skyObject = new SphereAssetObject("Sky", 0f, Math.createPositionMatrix(0f, 0f, 0f), 10000f, 10000f, 10000f,
+				TEXTURE.TEXTURE_SKY_01, 20, 20);
+		skyObject.setHasRigidBody(false);
+		skyObject.setRenderType(RENDER_TYPE.SKYLINE);
+		world.addEntity(skyObject.createEntityObject());
+
+		projectBuildScreen = new ProjectBuildScreen();
+		projectBuildScreen.show();
 		loading = false;
 	}
 
 	@Override
 	public void dispose() {
 		modelBatch.dispose();
+		world.dispose();
 		instances.clear();
 		try {
-			assets.dispose();
+			StorageHandler.getInstance().disposeAssets();
 		} catch (GdxRuntimeException e) {
-			Log.e("Catroid3D", e.toString());
+			Log.error(e.toString());
 		}
 
 	}
@@ -139,27 +182,36 @@ public class WorldListener implements ApplicationListener {
 
 	@Override
 	public void render() {
-		if (loading && assets.update()) {
+		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+		if (loading && StorageHandler.getInstance().updateAssetManager()) {
+			ProjectManager.getInstance().initializeSkin();
 			doneLoading();
 		}
-		if (showMainMenu) {
+		if (showMainMenu || loading) {
 			mainMenuScreen.render(Gdx.graphics.getDeltaTime());
 		} else {
-			cameraController.update();
+			movingCamera.update();
+			collisionCamera.position.set(movingCamera.position);
+			collisionCamera.direction.set(movingCamera.direction);
+			collisionCamera.up.set(movingCamera.up);
+			collisionCamera.update();
 
-			Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+			world.update();
 
-			modelBatch.begin(camera);
-			for (ModelInstance instance : instances) {
-				modelBatch.render(instance, lights);
-			}
+			renderContext.begin();
+			modelBatch.begin(movingCamera);
+			world.render(modelBatch, environment);
 			modelBatch.end();
+			renderContext.end();
+
+			projectBuildScreen.render(Gdx.graphics.getDeltaTime());
 		}
 	}
 
 	public void disposeMainMenu() {
 		showMainMenu = false;
+		mainMenuScreen.dispose();
 	}
 
 	@Override
@@ -172,6 +224,18 @@ public class WorldListener implements ApplicationListener {
 	public void resume() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public ModelBuilder getModelBuilder() {
+		return modelBuilder;
+	}
+
+	public World getWorld() {
+		return world;
+	}
+
+	public ProjectBuildScreen getProjectBuildScreen() {
+		return projectBuildScreen;
 	}
 
 }

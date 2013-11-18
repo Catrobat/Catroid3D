@@ -27,6 +27,8 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
+import com.badlogic.gdx.utils.GdxNativesLoader;
+import com.badlogic.gdx.utils.SharedLibraryLoader;
 
 public class WorldActivity extends AndroidApplication {
 
@@ -35,16 +37,23 @@ public class WorldActivity extends AndroidApplication {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		GdxNativesLoader.load();
+		new SharedLibraryLoader().load("gdx-bullet");
 
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		worldListener = new WorldListener();
 		initialize(worldListener, true);
+		ProjectManager.getInstance().setWorldActivity(this);
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+	}
+
+	public WorldListener getWorldListener() {
+		return worldListener;
 	}
 
 }

@@ -1,0 +1,160 @@
+
+pack.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+add_ground
+  rotate: false
+  xy: 122, 354
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+add_ground_pressed
+  rotate: false
+  xy: 516, 748
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+add_object
+  rotate: false
+  xy: 636, 868
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+add_object_pressed
+  rotate: false
+  xy: 2, 114
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+arial25
+  rotate: false
+  xy: 2, 466
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+button
+  rotate: false
+  xy: 2, 346
+  size: 118, 118
+  split: 28, 29, 30, 30
+  orig: 118, 118
+  offset: 0, 0
+  index: -1
+button_disabled
+  rotate: false
+  xy: 516, 860
+  size: 118, 118
+  split: 24, 29, 27, 28
+  orig: 118, 118
+  offset: 0, 0
+  index: -1
+button_pressed
+  rotate: false
+  xy: 2, 226
+  size: 118, 118
+  split: 26, 28, 26, 27
+  orig: 118, 118
+  offset: 0, 0
+  index: -1
+ground
+  rotate: false
+  xy: 122, 242
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+ground_pressed
+  rotate: false
+  xy: 224, 354
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+move_camera
+  rotate: false
+  xy: 516, 636
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+move_camera_pressed
+  rotate: false
+  xy: 738, 868
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+move_object
+  rotate: false
+  xy: 2, 2
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+move_object_pressed
+  rotate: false
+  xy: 224, 242
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+remove_ground
+  rotate: false
+  xy: 326, 354
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+remove_ground_pressed
+  rotate: false
+  xy: 516, 524
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+rotate_camera
+  rotate: false
+  xy: 840, 868
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+rotate_camera_pressed
+  rotate: false
+  xy: 326, 242
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+zoom_out
+  rotate: false
+  xy: 428, 354
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+zoom_out_pressed
+  rotate: false
+  xy: 428, 242
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+
+pack2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+impact50
+  rotate: false
+  xy: 2, 2
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
