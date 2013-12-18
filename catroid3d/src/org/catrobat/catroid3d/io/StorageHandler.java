@@ -23,6 +23,7 @@
 package org.catrobat.catroid3d.io;
 
 import org.catrobat.catroid3d.common.Constants;
+import org.catrobat.catroid3d.common.ModelDescriptor;
 import org.catrobat.catroid3d.utils.Util;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
@@ -57,12 +58,11 @@ public class StorageHandler {
 	}
 
 	private void loadModelAssets() {
-		Array<String> modelArray = Constants.MODEL_ARRAY;
+		Array<ModelDescriptor> modelArray = Constants.MODEL_DESCRIPTOR_ARRAY;
 		for (int index = 0; index < modelArray.size; index++) {
-			String modelPath = modelArray.get(index);
-			assetManager.load(modelPath, Model.class);
-			String texturePath = Util.getTexturePathFromModelPath(modelPath);
-			assetManager.load(texturePath, Texture.class);
+			ModelDescriptor modelDescriptor = modelArray.get(index);
+			assetManager.load(modelDescriptor.getModelPath(), Model.class);
+			assetManager.load(modelDescriptor.getTexturePath(), Texture.class);
 		}
 	}
 
@@ -75,7 +75,7 @@ public class StorageHandler {
 	}
 
 	private void loadUiAssets() {
-		assetManager.load(Constants.PACKED_TEXTURE_ATLAS_FILE, TextureAtlas.class);
+		assetManager.load(Util.getAssetPath(Constants.PACKED_TEXTURE_ATLAS_FILE), TextureAtlas.class);
 	}
 
 	public <T> T getAsset(String fileName) {

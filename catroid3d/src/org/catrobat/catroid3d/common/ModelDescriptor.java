@@ -20,31 +20,34 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.catrobat.catroid3d.utils;
+package org.catrobat.catroid3d.common;
 
-import org.catrobat.catroid3d.common.Constants;
-import org.catrobat.catroid3d.common.ModelDescriptor;
+public class ModelDescriptor {
 
-import com.badlogic.gdx.Gdx;
+	private String modelPath;
+	private String texturePath;
+	private String nameInSkinFile;
 
-public class Util {
-
-	public static ModelDescriptor getModelDescriptor(Constants.MODEL model) {
-		return Constants.MODEL_DESCRIPTOR_ARRAY.get(model.ordinal());
+	public ModelDescriptor(String modelPath, String nameInSkinFile) {
+		this.modelPath = modelPath;
+		this.texturePath = getTexturePathFromModelPath(modelPath);
+		this.nameInSkinFile = nameInSkinFile;
 	}
 
-	public static String getTexturePathFromModelPath(String modelPath) {
+	public String getModelPath() {
+		return modelPath;
+	}
+
+	public String getTexturePath() {
+		return texturePath;
+	}
+
+	public String getNameInSkinFile() {
+		return nameInSkinFile;
+	}
+
+	private String getTexturePathFromModelPath(String modelPath) {
 		return modelPath.substring(0, modelPath.lastIndexOf(".")) + Constants.DEFAULT_MODEL_TEXTURE_FILE_TYPE;
 	}
 
-	public static String getAssetPath() {
-		if (Gdx.graphics.getWidth() > 1280f && Gdx.graphics.getHeight() > 768f) {
-			return Constants.ASSET_PATH_XLARGE;
-		}
-		return Constants.ASSET_PATH_LARGE;
-	}
-
-	public static String getAssetPath(String name) {
-		return getAssetPath() + name;
-	}
 }

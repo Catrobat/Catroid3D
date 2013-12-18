@@ -24,7 +24,7 @@ package org.catrobat.catroid3d.ui.screen;
 
 import java.util.Comparator;
 
-import org.catrobat.catroid3d.content.Object.RenderType;
+import org.catrobat.catroid3d.content.Object.ObjectType;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g3d.Renderable;
@@ -47,8 +47,8 @@ public class CustomRenderableSorter implements RenderableSorter, Comparator<Rend
 
 	@Override
 	public int compare(final Renderable o1, final Renderable o2) {
-		final int rt1 = ((RenderType) o1.userData).getRenderType();
-		final int rt2 = ((RenderType) o2.userData).getRenderType();
+		final int rt1 = ((ObjectType) o1.userData).getObjectType();
+		final int rt2 = ((ObjectType) o2.userData).getObjectType();
 		if (rt1 > 0 || rt2 > 0) {
 			return rt1 > rt2 ? -1 : (rt2 > rt1 ? 1 : 0);
 		}

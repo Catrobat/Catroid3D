@@ -26,6 +26,7 @@ import java.util.HashMap;
 
 import org.catrobat.catroid3d.io.GestureDetector;
 import org.catrobat.catroid3d.io.GestureHandler;
+import org.catrobat.catroid3d.ui.ObjectHandler;
 import org.catrobat.catroid3d.ui.element.AddGroundButton;
 import org.catrobat.catroid3d.ui.element.AddObjectButton;
 import org.catrobat.catroid3d.ui.element.GroundButton;
@@ -48,6 +49,7 @@ public class ProjectBuildScreen implements Screen {
 	private Stage stage;
 	private GestureDetector gestureDetector;
 	private GestureHandler gestureHandler;
+	private ObjectHandler objectHandler;
 
 	public ProjectBuildScreen() {
 	}
@@ -83,7 +85,7 @@ public class ProjectBuildScreen implements Screen {
 		buttonMap.put(AddGroundButton.class, addGroundButton);
 		buttonMap.put(RemoveGroundButton.class, removeGroundButton);
 		controlPane = new VerticalGroup();
-		controlPane.setAlignment(Align.left);
+		controlPane.setAlignment(Align.left | Align.top);
 		controlPane.addActor(moveCameraButton);
 		controlPane.addActor(moveObjectButton);
 
@@ -91,12 +93,24 @@ public class ProjectBuildScreen implements Screen {
 		groundPane.addActor(groundButton);
 		groundPane.addActor(addGroundButton);
 		groundPane.addActor(removeGroundButton);
-		controlPane.setX(40);
-		controlPane.setY(750);
+		controlPane.setX(10);
+		controlPane.setY(Gdx.graphics.getHeight());
 		controlPane.addActor(groundPane);
-		AddObjectButton addObjectButton = new AddObjectButton(gestureHandler);
+
+		objectHandler = new ObjectHandler(this);
+
+		AddObjectButton addObjectButton = new AddObjectButton(objectHandler);
 		controlPane.addActor(addObjectButton);
 		stage.addActor(controlPane);
+
+	}
+
+	public void hideControlPane() {
+		controlPane.setVisible(false);
+	}
+
+	public void showControlPane() {
+		controlPane.setVisible(true);
 	}
 
 	public Button getButton(Class<?> clazz) {
@@ -109,6 +123,10 @@ public class ProjectBuildScreen implements Screen {
 
 	public GestureDetector getGestureDetector() {
 		return gestureDetector;
+	}
+
+	public ObjectHandler getObjectHandler() {
+		return objectHandler;
 	}
 
 	@Override

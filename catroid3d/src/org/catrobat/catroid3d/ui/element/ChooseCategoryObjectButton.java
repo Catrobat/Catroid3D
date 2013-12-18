@@ -23,27 +23,30 @@
 package org.catrobat.catroid3d.ui.element;
 
 import org.catrobat.catroid3d.ProjectManager;
-import org.catrobat.catroid3d.common.Constants;
 import org.catrobat.catroid3d.ui.ObjectHandler;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
-public class AddObjectButton extends Button {
+public class ChooseCategoryObjectButton extends TextButton {
 
 	private ObjectHandler objectHandler;
+	private int index;
 
-	public AddObjectButton(ObjectHandler objectHandler) {
-		super(ProjectManager.getInstance().getSkin(), Constants.UI_ADD_OBJECT_BUTTON);
+	public ChooseCategoryObjectButton(ObjectHandler objectHandler, String text, int index) {
+		super(text, ProjectManager.getInstance().getSkin());
 		this.objectHandler = objectHandler;
-
+		this.setWidth(Gdx.graphics.getWidth() * 0.3f);
+		this.index = index;
 		addListener(new InputListener() {
 
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				setChecked(false);
-				AddObjectButton.this.objectHandler.showChooseObjectSplitPane();
+				ChooseCategoryObjectButton.this.objectHandler
+						.objectCategoryChanged(ChooseCategoryObjectButton.this.index);
 				return true;
 			}
 
@@ -52,5 +55,7 @@ public class AddObjectButton extends Button {
 				setChecked(false);
 			}
 		});
+
 	}
+
 }

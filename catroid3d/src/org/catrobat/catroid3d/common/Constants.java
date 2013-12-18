@@ -30,6 +30,8 @@ public final class Constants {
 
 	public static String PACKED_TEXTURE_ATLAS_FILE = "pack.atlas";
 	public static String SKIN_FILE = "skin.json";
+	public static String ASSET_PATH_LARGE = "large/";
+	public static String ASSET_PATH_XLARGE = "xlarge/";
 
 	/* UI Elements in skin.json */
 	public static String UI_MOVE_CAMERA_BUTTON = "move-camera-button";
@@ -71,20 +73,33 @@ public final class Constants {
 		MODEL_GRASS_01, //
 		MODEL_GRASS_02, //
 		MODEL_PALM_TREE_01, //
-		MODEL_BIG_WOOD_BARREL //
+		MODEL_BIG_WOOD_BARREL, //
+		MODEL_PALM_PLANT_01 //
 	}
 
 	// Model Array
 
-	public static final Array<String> MODEL_ARRAY = new Array<String>(new String[] {
-			//
-			ASSET_MODEL_BUSH_PATH + "tropical_plant_01.g3db", //
-			ASSET_MODEL_BUSH_PATH + "tropical_plant_02.g3db", //
-			ASSET_MODEL_GRASS_PATH + "grass_01.g3db", //
-			ASSET_MODEL_GRASS_PATH + "grass_02.g3db", //
-			ASSET_MODEL_TREE_PATH + "palm_tree_01.g3db", //
-			ASSET_MODEL_MISCELLANEOUS_PATH + "big_wood_barrel.g3db" //
-	});
+	//	public static final Array<String> MODEL_ARRAY_ = new Array<String>(new String[] {
+	//			//
+	//			ASSET_MODEL_BUSH_PATH + "tropical_plant_01.g3db", //
+	//			ASSET_MODEL_BUSH_PATH + "tropical_plant_02.g3db", //
+	//			ASSET_MODEL_GRASS_PATH + "grass_01.g3db", //
+	//			ASSET_MODEL_GRASS_PATH + "grass_02.g3db", //
+	//			ASSET_MODEL_TREE_PATH + "palm_tree_01.g3db", //
+	//			ASSET_MODEL_MISCELLANEOUS_PATH + "big_wood_barrel.g3db" //
+	//	});
+
+	public static final Array<ModelDescriptor> MODEL_DESCRIPTOR_ARRAY = new Array<ModelDescriptor>(
+			new ModelDescriptor[] {
+					//
+					new ModelDescriptor(ASSET_MODEL_BUSH_PATH + "tropical_plant_01.g3db", "tropical-plant-01"), //
+					new ModelDescriptor(ASSET_MODEL_BUSH_PATH + "tropical_plant_02.g3db", "tropical-plant-02"), //
+					new ModelDescriptor(ASSET_MODEL_GRASS_PATH + "grass_01.g3db", ""), //
+					new ModelDescriptor(ASSET_MODEL_GRASS_PATH + "grass_02.g3db", ""), //
+					new ModelDescriptor(ASSET_MODEL_TREE_PATH + "palm_tree_01.g3db", "palm-tree-01"), //
+					new ModelDescriptor(ASSET_MODEL_MISCELLANEOUS_PATH + "big_wood_barrel.g3db", "big-wood-barrel"), //
+					new ModelDescriptor(ASSET_MODEL_BUSH_PATH + "palm_plant_01.g3db", "palm-plant-01"), //
+			});
 
 	// Texture Enum
 

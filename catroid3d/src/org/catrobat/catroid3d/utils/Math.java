@@ -35,6 +35,10 @@ public class Math {
 		return new Matrix4().setToTranslation(positon);
 	}
 
+	public static Matrix4 createCenterPositionMatrix() {
+		return createPositionMatrix(0f, 0f, 0f);
+	}
+
 	public static Matrix4 createRandomPosition(float minimum, float maximum) {
 		float x = minimum + (float) (java.lang.Math.random() * ((maximum - minimum) + 1));
 		float z = minimum + (float) (java.lang.Math.random() * ((maximum - minimum) + 1));

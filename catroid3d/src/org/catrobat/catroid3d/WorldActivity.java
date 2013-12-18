@@ -55,5 +55,4 @@ public class WorldActivity extends AndroidApplication {
 	public WorldListener getWorldListener() {
 		return worldListener;
 	}
-
 }

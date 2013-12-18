@@ -40,7 +40,7 @@ public abstract class Object implements Serializable {
 		NONE, TEXTURE_BEHIND
 	}
 
-	public static enum RENDER_TYPE {
+	public static enum OBJECT_TYPE {
 		NORMAL, GROUND, SKYLINE
 	}
 
@@ -53,7 +53,8 @@ public abstract class Object implements Serializable {
 	protected Model model;
 	protected Entity entity;
 	protected TEXTURE_TYPE textureType = TEXTURE_TYPE.TEXTURE_BEHIND;
-	protected RENDER_TYPE renderType = RENDER_TYPE.NORMAL;
+	protected OBJECT_TYPE objectType = OBJECT_TYPE.NORMAL;
+	protected int collisionFlags = 0;
 
 	public Object(String name, float mass, Matrix4 position) {
 		this.name = name;
@@ -65,8 +66,12 @@ public abstract class Object implements Serializable {
 		this.position = position;
 	}
 
-	public void setRenderType(RENDER_TYPE renderType) {
-		this.renderType = renderType;
+	public void setObjectType(OBJECT_TYPE renderType) {
+		this.objectType = renderType;
+	}
+
+	public OBJECT_TYPE getObjectType() {
+		return objectType;
 	}
 
 	public void setTextureType(TEXTURE_TYPE textureType) {
@@ -77,6 +82,10 @@ public abstract class Object implements Serializable {
 
 	public void setHasRigidBody(boolean hasRigidBody) {
 		this.hasRigidBody = hasRigidBody;
+	}
+
+	public void setCollisionFlags(int collisionFlags) {
+		this.collisionFlags = collisionFlags;
 	}
 
 	public void setName(String name) {
@@ -111,9 +120,10 @@ public abstract class Object implements Serializable {
 			btRigidBodyConstructionInfo bodyInfo = new btRigidBodyConstructionInfo(mass, null, shape,
 					calculateLocalInertia(shape));
 			body = new btRigidBody(bodyInfo);
+			body.setCollisionFlags(body.getCollisionFlags() | collisionFlags);
 		}
-		entity = new Entity(model, body, position);
-		entity.modelInstance.userData = new RenderType(renderType.ordinal());
+		entity = new Entity(this, body);
+		entity.modelInstance.userData = new ObjectType(objectType.ordinal());
 		return entity;
 	}
 
@@ -129,16 +139,16 @@ public abstract class Object implements Serializable {
 		return localInertia;
 	}
 
-	public class RenderType extends java.lang.Object {
+	public class ObjectType extends java.lang.Object {
 
-		private int renderType;
+		private int objectType;
 
-		public RenderType(int renderType) {
-			this.renderType = renderType;
+		public ObjectType(int objectType) {
+			this.objectType = objectType;
 		}
 
-		public int getRenderType() {
-			return renderType;
+		public int getObjectType() {
+			return objectType;
 		}
 	}
 }

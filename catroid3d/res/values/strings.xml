@@ -3,6 +3,12 @@
 
     <string name="app_name">catroid3d</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="ground">Ground</string>
+    <string name="miscellaneous">Miscellaneous</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="static_object">Static object</string>
+    <string name="dynamic_object">Dynamic object</string>
+    <string name="simple_object">Simple object</string>
 
 </resources>

@@ -1,29 +1,61 @@
 {
-     com.badlogic.gdx.graphics.g2d.BitmapFont: {  
-	  normaltext: { file: arial25.fnt },  
-	  titletext: { file: impact50.fnt },
-	  },
-	 com.badlogic.gdx.graphics.Color: {  
-      red: { a: 1, b: 0, g: 0, r: 1 },  
-      green: { a: 1, b: 0, g: 1, r: 0 },  
-      blue: { a: 1, b: 1, g: 0, r: 0 },  
-      white: { hex: "FFFFFF" },  
-      black: { hex: "000000" } 
-     },
-     com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {  
-      default: { font: normaltext, fontColor: white },  
-      normal-text: { font: normaltext, fontColor: white },  
-      title-text: { font: titletext, fontColor: red },  
-     },
-     com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {  
-      default: { up: button, down: button_pressed, checked: button_pressed, disabled: button_disabled },  
-      transparent: { },
-      move-camera-button: { up: move_camera, down: move_camera_pressed, checked: move_camera_pressed },
-      move-object-button: { up: move_object, down: move_object_pressed, checked: move_object_pressed },
-      ground-button: { up: ground, down: ground_pressed, checked: ground_pressed },
-      add-ground-button: { up: add_ground, down: add_ground_pressed, checked: add_ground_pressed },
-      remove-ground-button: { up: remove_ground, down: remove_ground_pressed, checked: remove_ground_pressed },
-      add-object-button: { up: add_object, down: add_object_pressed, checked: add_object_pressed },            
-     }, 
-	
+	com.badlogic.gdx.graphics.g2d.BitmapFont: {  
+		default-font: { file: arial25.fnt },  
+		title-font: { file: impact50.fnt },
+	},
+	com.badlogic.gdx.graphics.Color: {  
+		red: { a: 1, b: 0, g: 0, r: 1 },  
+		green: { a: 1, b: 0, g: 1, r: 0 },  
+		blue: { a: 1, b: 1, g: 0, r: 0 },  
+		white: { hex: "FFFFFF" },  
+		black: { hex: "000000" }, 
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {  
+		default: { font: default-font, fontColor: white },  
+		normal-text: { font: default-font, fontColor: white },  
+		title-text: { font: title-font, fontColor: red },  
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {  
+		default: { up: button, down: button_pressed, checked: button_pressed, disabled: button_disabled },  
+		transparent: { },
+		move-camera-button: { up: move_camera, down: move_camera_pressed, checked: move_camera_pressed },
+		move-object-button: { up: move_object, down: move_object_pressed, checked: move_object_pressed },
+		ground-button: { up: ground, down: ground_pressed, checked: ground_pressed },
+		add-ground-button: { up: add_ground, down: add_ground_pressed, checked: add_ground_pressed },
+		remove-ground-button: { up: remove_ground, down: remove_ground_pressed, checked: remove_ground_pressed },
+		add-object-button: { up: add_object, down: add_object_pressed, checked: add_object_pressed },            
+	}, 
+	com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+		default: { vScroll: default-scroll, hScrollKnob: default-round-large, background: default-rect, hScroll: default-scroll, vScrollKnob: default-round-large }
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
+		default: {
+			font: default-font, fontColor: white, background: default-select,
+			scrollStyle: default,
+			listStyle: { font: default-font, selection: default-select-selection }
+		}
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle: {
+        default-vertical: { handle: default-splitpane-vertical },
+        default-horizontal: { handle: default-splitpane }
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
+		default: { fontColorUnselected: white, selection: default-rect-pad, fontColorSelected: white, font: default-font }
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
+        default: { titleFont: default-font, background: default-window, titleFontColor: white },
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle: {
+        default: { minus: tree-minus, plus: tree-plus, selection: default-select-selection }
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+        default: { down: button_pressed, up: button, checked: button_pressed, font: default-font, fontColor: white },
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+        palm-tree-01: { imageUp: palm_tree_01, imageDown: palm_tree_01, imageChecked: palm_tree_01 },
+        palm-plant-01: { imageUp: palm_plant_01, imageDown: palm_plant_01, imageChecked: palm_plant_01 },
+        tropical-plant-01: { imageUp: tropical_plant_01, imageDown: tropical_plant_01, imageChecked: tropical_plant_01 },
+        tropical-plant-02: { imageUp: tropical_plant_02, imageDown: tropical_plant_02, imageChecked: tropical_plant_02 },
+        big-wood-barrel: { imageUp: big_wood_barrel, imageDown: big_wood_barrel, imageChecked: big_wood_barrel }
+	},
 }

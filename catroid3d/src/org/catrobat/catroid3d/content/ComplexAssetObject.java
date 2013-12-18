@@ -22,10 +22,8 @@
  */
 package org.catrobat.catroid3d.content;
 
-import org.catrobat.catroid3d.common.Constants;
-import org.catrobat.catroid3d.common.Constants.MODEL;
+import org.catrobat.catroid3d.common.ModelDescriptor;
 import org.catrobat.catroid3d.io.StorageHandler;
-import org.catrobat.catroid3d.utils.Util;
 
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
@@ -43,21 +41,19 @@ import com.badlogic.gdx.utils.Array;
 public class ComplexAssetObject extends Object {
 
 	private static final long serialVersionUID = 1L;
-	private MODEL assetModelId;
+	private ModelDescriptor modelDescriptor;
 
-	public ComplexAssetObject(String name, float mass, Matrix4 position, MODEL assetModelId) {
+	public ComplexAssetObject(String name, float mass, Matrix4 position, ModelDescriptor modelDescriptor) {
 		super(name, mass, position);
-		this.assetModelId = assetModelId;
+		this.modelDescriptor = modelDescriptor;
 	}
 
 	@Override
 	public void createModel() {
-		String modelPath = Constants.MODEL_ARRAY.get(assetModelId.ordinal());
-		String texturePath = Util.getTexturePathFromModelPath(modelPath);
-		model = StorageHandler.getInstance().getAsset(modelPath);
+		model = StorageHandler.getInstance().getAsset(modelDescriptor.getModelPath());
 		Array<Attribute> materialAttributes = new Array<Attribute>();
 		materialAttributes.add(new TextureAttribute(TextureAttribute.Diffuse, (Texture) StorageHandler.getInstance()
-				.getAsset(texturePath)));
+				.getAsset(modelDescriptor.getTexturePath())));
 		materialAttributes.add(new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, 1f));
 		if (textureType == TEXTURE_TYPE.TEXTURE_BEHIND) {
 			materialAttributes.add(new IntAttribute(IntAttribute.CullFace, 0));

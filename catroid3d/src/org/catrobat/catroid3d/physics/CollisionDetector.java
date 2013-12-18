@@ -23,6 +23,7 @@
 package org.catrobat.catroid3d.physics;
 
 import org.catrobat.catroid3d.common.MathConstants;
+import org.catrobat.catroid3d.content.Object;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Plane;
@@ -69,8 +70,17 @@ public class CollisionDetector {
 		return entity;
 	}
 
-	public Entity hasHitDynamicObjectFromScreenCoords(float screenX, float screenY) {
+	public Entity hastHitNonGroundAndNonSkyObjectFromScreenCoords(float screenX, float screenY) {
 		Entity entity = hasHitObjectFromScreenCoords(screenX, screenY);
+		if (entity != null && entity.body != null && entity.getObject().getObjectType() != Object.OBJECT_TYPE.GROUND
+				&& entity.getObject().getObjectType() != Object.OBJECT_TYPE.SKYLINE) {
+			return entity;
+		}
+		return null;
+	}
+
+	public Entity hasHitDynamicObjectFromScreenCoords(float screenX, float screenY) {
+		Entity entity = hastHitNonGroundAndNonSkyObjectFromScreenCoords(screenX, screenY);
 		if (entity != null && entity.body != null && !entity.body.isStaticObject() && !entity.body.isKinematicObject()) {
 			return entity;
 		}
@@ -78,6 +88,14 @@ public class CollisionDetector {
 	}
 
 	public Entity hasHitStaticObjectFromScreenCoords(float screenX, float screenY) {
+		Entity entity = hastHitNonGroundAndNonSkyObjectFromScreenCoords(screenX, screenY);
+		if (entity != null && entity.body != null && entity.body.isStaticObject()) {
+			return entity;
+		}
+		return null;
+	}
+
+	public Entity hasHitGroundObjectFromScreenCoords(float screenX, float screenY) {
 		Entity entity = hasHitObjectFromScreenCoords(screenX, screenY);
 		if (entity != null && entity.body != null && entity.body.isStaticObject()) {
 			return entity;

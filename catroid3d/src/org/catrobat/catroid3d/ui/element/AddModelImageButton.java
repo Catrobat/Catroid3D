@@ -20,31 +20,37 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.catrobat.catroid3d.utils;
+package org.catrobat.catroid3d.ui.element;
 
-import org.catrobat.catroid3d.common.Constants;
+import org.catrobat.catroid3d.ProjectManager;
+import org.catrobat.catroid3d.common.Constants.MODEL;
 import org.catrobat.catroid3d.common.ModelDescriptor;
+import org.catrobat.catroid3d.ui.ObjectHandler;
+import org.catrobat.catroid3d.utils.Util;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 
-public class Util {
+public class AddModelImageButton extends ImageButton {
 
-	public static ModelDescriptor getModelDescriptor(Constants.MODEL model) {
-		return Constants.MODEL_DESCRIPTOR_ARRAY.get(model.ordinal());
-	}
+	private ModelDescriptor modelDescriptor;
+	private ObjectHandler objectHandler;
 
-	public static String getTexturePathFromModelPath(String modelPath) {
-		return modelPath.substring(0, modelPath.lastIndexOf(".")) + Constants.DEFAULT_MODEL_TEXTURE_FILE_TYPE;
-	}
+	public AddModelImageButton(MODEL model, ObjectHandler addObjectButton) {
+		super(ProjectManager.getInstance().getSkin(), Util.getModelDescriptor(model).getNameInSkinFile());
+		modelDescriptor = Util.getModelDescriptor(model);
+		this.objectHandler = addObjectButton;
 
-	public static String getAssetPath() {
-		if (Gdx.graphics.getWidth() > 1280f && Gdx.graphics.getHeight() > 768f) {
-			return Constants.ASSET_PATH_XLARGE;
-		}
-		return Constants.ASSET_PATH_LARGE;
-	}
+		addListener(new InputListener() {
 
-	public static String getAssetPath(String name) {
-		return getAssetPath() + name;
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				objectHandler.addObjectToWorld(modelDescriptor);
+				objectHandler.hideChooseObjectSplitPane();
+				return true;
+			}
+
+		});
 	}
 }

@@ -41,7 +41,6 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.bullet.collision.Collision;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class GestureHandler implements GestureListener {
 
@@ -56,7 +55,6 @@ public class GestureHandler implements GestureListener {
 	private PerspectiveCamera collisionCamera;
 	private PerspectiveCamera movingCamera;
 	private World world;
-	private Stage guiStage;
 	private ProjectBuildScreen screen;
 	private final Vector3 tmpV1 = new Vector3();
 	private final Vector3 tmpV2 = new Vector3();
@@ -68,7 +66,6 @@ public class GestureHandler implements GestureListener {
 		movingCamera = worldListener.movingCamera;
 		collisionCamera = worldListener.collisionCamera;
 		world = worldListener.getWorld();
-		this.guiStage = screen.getStage();
 		this.screen = screen;
 		collisionDetector = new CollisionDetector(collisionCamera, world);
 		groundBuilder = new GroundBuilder(collisionDetector);
@@ -79,17 +76,14 @@ public class GestureHandler implements GestureListener {
 		boolean result = false;
 		startX = x;
 		startY = y;
-		result = guiStage.touchDown((int) x, (int) y, pointer, button);
+		result = screen.getStage().touchDown((int) x, (int) y, pointer, button);
 		if (result) {
 			screen.getGestureDetector().setPinching(false);
 			return result;
 		}
-		Entity entity = collisionDetector.hasHitDynamicObjectFromScreenCoords(x, y);
+		Entity entity = collisionDetector.hastHitNonGroundAndNonSkyObjectFromScreenCoords(x, y);
 		if (entity != null && entity.body != null) {
-			entityToMove = entity;
-			entity.body.setActivationState(Collision.DISABLE_DEACTIVATION);
-			entity.body.setLinearFactor(new Vector3(1, 0, 1));
-			entity.body.setAngularFactor(new Vector3(0, 0, 0));
+			setEntityToMove(entity);
 			result = true;
 		}
 		return result;
@@ -99,7 +93,7 @@ public class GestureHandler implements GestureListener {
 	@Override
 	public boolean tap(float x, float y, int count, int button) {
 		boolean result = false;
-		result = guiStage.touchUp((int) x, (int) y, 0, button);
+		result = screen.getStage().touchUp((int) x, (int) y, 0, button);
 		if (result) {
 			screen.getGestureDetector().setPinching(true);
 			return result;
@@ -119,8 +113,13 @@ public class GestureHandler implements GestureListener {
 
 	@Override
 	public boolean longPress(float x, float y) {
-		return guiStage.touchUp((int) x, (int) y, 0, 0);
-		//		return false;
+		boolean result = false;
+		Entity entity = collisionDetector.hastHitNonGroundAndNonSkyObjectFromScreenCoords(x, y);
+		if (entity != null && entity.body != null) {
+			screen.getObjectHandler().showObjectDialogBox(entity, x, Gdx.graphics.getHeight() - y);
+			result = true;
+		}
+		return result;
 	}
 
 	@Override
@@ -136,7 +135,6 @@ public class GestureHandler implements GestureListener {
 		if (entityToMove != null && screen.getButton(MoveObjectButton.class).isPressed()) {
 			Vector3 worldGroundCoords = collisionDetector.screenCoordsToWorldGroundCoords(x, y);
 			if (worldGroundCoords != null) {
-				//				entityToMove.body.setWorldTransform(new Matrix4().setToTranslation(worldGroundCoords));
 				entityToMove.setWorldTransform(new Matrix4().setToTranslation(worldGroundCoords));
 				result = true;
 			}
@@ -177,14 +175,21 @@ public class GestureHandler implements GestureListener {
 		return false;
 	}
 
+	public void setEntityToMove(Entity entity) {
+		entityToMove = entity;
+		entity.body.setActivationState(Collision.DISABLE_DEACTIVATION);
+		entity.body.setLinearFactor(new Vector3(1, 0, 1));
+		entity.body.setAngularFactor(new Vector3(0, 0, 0));
+	}
+
 	private void resetEntityToMove() {
-		if (entityToMove != null) {
+		if (entityToMove != null && entityToMove.body != null) {
 			entityToMove.body.setLinearFactor(new Vector3(1, 1, 1));
 			entityToMove.body.setAngularFactor(new Vector3(1, 1, 1));
 			entityToMove.body.forceActivationState(Collision.ACTIVE_TAG);
 			entityToMove.body.setDeactivationTime(0f);
-			entityToMove = null;
 		}
+		entityToMove = null;
 	}
 
 	public GroundBuilder getGroundBuilder() {

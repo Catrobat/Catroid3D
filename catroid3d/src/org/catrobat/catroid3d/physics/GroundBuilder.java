@@ -26,7 +26,7 @@ import org.catrobat.catroid3d.ProjectManager;
 import org.catrobat.catroid3d.common.Constants.TEXTURE;
 import org.catrobat.catroid3d.content.BoxAssetObject;
 import org.catrobat.catroid3d.content.Object;
-import org.catrobat.catroid3d.content.Object.RENDER_TYPE;
+import org.catrobat.catroid3d.content.Object.OBJECT_TYPE;
 import org.catrobat.catroid3d.utils.Math;
 
 import com.badlogic.gdx.math.Vector3;
@@ -44,9 +44,9 @@ public class GroundBuilder {
 		world = ProjectManager.getInstance().getWorldActivity().getWorldListener().getWorld();
 		groundObject = new BoxAssetObject("Ground", 0f, Math.createPositionMatrix(0f, -1f, 0f), 500f, 1f, 500f,
 				TEXTURE.TEXTURE_GRASS_01);
-		groundObject.setRenderType(RENDER_TYPE.GROUND);
+		groundObject.setObjectType(OBJECT_TYPE.GROUND);
 		cursor = new BoxAssetObject("Cursor", 0f, Math.createPositionMatrix(0f, 1f, 0f), 500f, 1f, 500f, null);
-		cursor.setRenderType(RENDER_TYPE.NORMAL);
+		cursor.setObjectType(OBJECT_TYPE.NORMAL);
 		cursor.setHasRigidBody(false);
 		cursorEntity = cursor.createEntityObject();
 		cursorEntity.setIsRenderable(false);
@@ -64,7 +64,7 @@ public class GroundBuilder {
 	public void removeGround() {
 		Vector3 position = new Vector3();
 		cursorEntity.modelInstance.transform.getTranslation(position);
-		Entity entity = collisionDetector.hasHitStaticObjectFromScreenCoords(screenCursorX, screenCursorY);
+		Entity entity = collisionDetector.hasHitGroundObjectFromScreenCoords(screenCursorX, screenCursorY);
 		if (entity != null) {
 			world.removeEntity(entity);
 			entity.dispose();

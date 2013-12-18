@@ -22,9 +22,10 @@
  */
 package org.catrobat.catroid3d.physics;
 
+import org.catrobat.catroid3d.content.Object;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g3d.Material;
-import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.math.Matrix4;
@@ -37,18 +38,16 @@ public class Entity implements Disposable {
 	private Matrix4 transform;
 	private Color color = new Color(1f, 1f, 1f, 1f);
 	private boolean isRenderable = true;
+	private Object object;
 	public ModelInstance modelInstance;
 	public Entity.MotionState motionState;
 	public btRigidBody body;
 
-	public Entity(final Model model, final btRigidBody body, final Matrix4 transform) {
-		this(new ModelInstance(model, transform.cpy()), body);
-	}
-
-	public Entity(final ModelInstance modelInstance, final btRigidBody body) {
-		this.modelInstance = modelInstance;
+	public Entity(final Object object, final btRigidBody body) {
+		this.modelInstance = new ModelInstance(object.getModel(), object.getTransformation().cpy());
 		this.transform = this.modelInstance.transform;
 		this.body = body;
+		this.object = object;
 
 		if (body != null) {
 			body.userData = this;
@@ -77,6 +76,10 @@ public class Entity implements Disposable {
 		}
 	}
 
+	public Object getObject() {
+		return object;
+	}
+
 	public boolean isRenderable() {
 		return isRenderable;
 	}
@@ -100,9 +103,8 @@ public class Entity implements Disposable {
 	public void setWorldTransform(Matrix4 transform) {
 		if (body != null) {
 			body.setWorldTransform(transform);
-		} else {
-			this.modelInstance.transform = transform;
 		}
+		this.modelInstance.transform.set(transform);
 	}
 
 	static class MotionState extends btMotionState implements Disposable {
