@@ -189,6 +189,10 @@ public class WorldListener implements ApplicationListener {
 			collisionCamera.up.set(movingCamera.up);
 			collisionCamera.update();
 
+			for (Object object : ProjectManager.getInstance().getCurrentProject().getObjectList()) {
+				object.render();
+			}
+
 			world.update();
 
 			renderContext.begin();

@@ -56,6 +56,7 @@
         palm-plant-01: { imageUp: palm_plant_01, imageDown: palm_plant_01, imageChecked: palm_plant_01 },
         tropical-plant-01: { imageUp: tropical_plant_01, imageDown: tropical_plant_01, imageChecked: tropical_plant_01 },
         tropical-plant-02: { imageUp: tropical_plant_02, imageDown: tropical_plant_02, imageChecked: tropical_plant_02 },
-        big-wood-barrel: { imageUp: big_wood_barrel, imageDown: big_wood_barrel, imageChecked: big_wood_barrel }
+        big-wood-barrel: { imageUp: big_wood_barrel, imageDown: big_wood_barrel, imageChecked: big_wood_barrel },
+        dog-01: { imageUp: dog_01, imageDown: dog_01, imageChecked: dog_01 }
 	},
 }

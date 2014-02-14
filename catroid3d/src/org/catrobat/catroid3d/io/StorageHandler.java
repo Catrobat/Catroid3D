@@ -64,6 +64,13 @@ public class StorageHandler {
 			assetManager.load(modelDescriptor.getModelPath(), Model.class);
 			assetManager.load(modelDescriptor.getTexturePath(), Texture.class);
 		}
+		Array<ModelDescriptor> animatedModelArray = Constants.ANIMATED_MODEL_DESCRIPTOR_ARRAY;
+		for (int index = 0; index < animatedModelArray.size; index++) {
+			ModelDescriptor modelDescriptor = animatedModelArray.get(index);
+			assetManager.load(modelDescriptor.getModelPath(), Model.class);
+			String name = modelDescriptor.getTexturePath();
+			//			assetManager.load(modelDescriptor.getTexturePath(), Texture.class);
+		}
 	}
 
 	private void loadTextureAssets() {

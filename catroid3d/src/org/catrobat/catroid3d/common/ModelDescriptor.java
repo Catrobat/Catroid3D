@@ -42,6 +42,10 @@ public class ModelDescriptor {
 		return texturePath;
 	}
 
+	public String getTexturePath(String fileType) {
+		return modelPath.substring(0, modelPath.lastIndexOf(".")) + fileType;
+	}
+
 	public String getNameInSkinFile() {
 		return nameInSkinFile;
 	}

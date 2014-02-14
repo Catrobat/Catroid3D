@@ -80,6 +80,9 @@ public abstract class Object implements Serializable {
 
 	public abstract void createModel();
 
+	public void render() {
+	};
+
 	public void setHasRigidBody(boolean hasRigidBody) {
 		this.hasRigidBody = hasRigidBody;
 	}

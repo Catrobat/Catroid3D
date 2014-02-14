@@ -45,6 +45,7 @@ public final class Constants {
 	public static String ASSET_DATA_PATH = "data/";
 
 	public static String ASSET_MODEL_PATH = ASSET_DATA_PATH + "model/";
+	public static String ASSET_MODEL_ANIMATED_PATH = ASSET_MODEL_PATH + "animated/";
 	public static String ASSET_MODEL_GROUND_PATH = ASSET_MODEL_PATH + "ground/";
 	public static String ASSET_MODEL_BUSH_PATH = ASSET_MODEL_GROUND_PATH + "bush/";
 	public static String ASSET_MODEL_GRASS_PATH = ASSET_MODEL_GROUND_PATH + "grass/";
@@ -74,20 +75,9 @@ public final class Constants {
 		MODEL_GRASS_02, //
 		MODEL_PALM_TREE_01, //
 		MODEL_BIG_WOOD_BARREL, //
-		MODEL_PALM_PLANT_01 //
+		MODEL_PALM_PLANT_01, //
+		MODEL_KNIGHT //
 	}
-
-	// Model Array
-
-	//	public static final Array<String> MODEL_ARRAY_ = new Array<String>(new String[] {
-	//			//
-	//			ASSET_MODEL_BUSH_PATH + "tropical_plant_01.g3db", //
-	//			ASSET_MODEL_BUSH_PATH + "tropical_plant_02.g3db", //
-	//			ASSET_MODEL_GRASS_PATH + "grass_01.g3db", //
-	//			ASSET_MODEL_GRASS_PATH + "grass_02.g3db", //
-	//			ASSET_MODEL_TREE_PATH + "palm_tree_01.g3db", //
-	//			ASSET_MODEL_MISCELLANEOUS_PATH + "big_wood_barrel.g3db" //
-	//	});
 
 	public static final Array<ModelDescriptor> MODEL_DESCRIPTOR_ARRAY = new Array<ModelDescriptor>(
 			new ModelDescriptor[] {
@@ -99,6 +89,17 @@ public final class Constants {
 					new ModelDescriptor(ASSET_MODEL_TREE_PATH + "palm_tree_01.g3db", "palm-tree-01"), //
 					new ModelDescriptor(ASSET_MODEL_MISCELLANEOUS_PATH + "big_wood_barrel.g3db", "big-wood-barrel"), //
 					new ModelDescriptor(ASSET_MODEL_BUSH_PATH + "palm_plant_01.g3db", "palm-plant-01"), //
+					new ModelDescriptor(ASSET_MODEL_ANIMATED_PATH + "Knight.g3db", "dog-01") // 
+			});
+
+	public static enum ANIMATED_MODEL {
+		MODEL_KNIGHT
+	}
+
+	public static final Array<ModelDescriptor> ANIMATED_MODEL_DESCRIPTOR_ARRAY = new Array<ModelDescriptor>(
+			new ModelDescriptor[] {
+			//
+			new ModelDescriptor(ASSET_MODEL_ANIMATED_PATH + "Knight.g3db", "dog-01"), // 
 			});
 
 	// Texture Enum

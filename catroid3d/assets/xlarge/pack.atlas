@@ -234,6 +234,13 @@ default-window
   orig: 27, 29
   offset: 0, 0
   index: -1
+dog_01
+  rotate: false
+  xy: 402, 110
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
 ground
   rotate: false
   xy: 915, 913
@@ -277,13 +284,6 @@ move_object_pressed
   offset: 0, 0
   index: -1
 palm_plant_01
-  rotate: false
-  xy: 402, 110
-  size: 400, 400
-  orig: 400, 400
-  offset: 0, 0
-  index: -1
-palm_tree_01
   rotate: false
   xy: 514, 623
   size: 400, 400
@@ -358,23 +358,30 @@ impact50
   orig: 512, 512
   offset: 0, 0
   index: -1
-tropical_plant_01
+palm_tree_01
   rotate: false
   xy: 1, 1
   size: 400, 400
   orig: 400, 400
   offset: 0, 0
   index: -1
-tropical_plant_02
+tropical_plant_01
   rotate: false
   xy: 514, 514
   size: 400, 400
   orig: 400, 400
   offset: 0, 0
   index: -1
+tropical_plant_02
+  rotate: false
+  xy: 402, 1
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
 zoom_out
   rotate: false
-  xy: 402, 291
+  xy: 915, 804
   size: 100, 110
   orig: 100, 110
   offset: 0, 0

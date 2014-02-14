@@ -73,11 +73,17 @@ public class ProjectManager {
 		barrel01.setCollisionFlags(CollisionFlags.CF_NO_CONTACT_RESPONSE);
 		barrel01.setTextureType(TEXTURE_TYPE.NONE);
 
+		//		Object knight = new AnimatedAssetObject("Dog", 20f, Math.createPositionMatrix(200f, 2f, 250f).scl(2f),
+		//				Constants.ANIMATED_MODEL_DESCRIPTOR_ARRAY.get(ANIMATED_MODEL.MODEL_KNIGHT.ordinal()));
+
+		Object knight = new ComplexAssetObject("Knight", 0f, Math.createPositionMatrix(200f, 0f, 250f),
+				Util.getModelDescriptor(MODEL.MODEL_KNIGHT));
+
 		//		Object barrel02 = new ComplexAssetObject("Barrel02", 10f, Math.createPositionMatrix(30f, 0f, 200f),
 		//				Util.getModelDescriptor(MODEL.MODEL_BIG_WOOD_BARREL));
 		//		barrel02.setTextureType(TEXTURE_TYPE.NONE);
 
-		Object tree01 = new ComplexAssetObject("Tree01", 0f, Math.createPositionMatrix(-200f, 0f, 300f),
+		Object tree01 = new ComplexAssetObject("Tree01", 0f, Math.createPositionMatrix(-200f, 0f, 300f).scl(2f),
 				Util.getModelDescriptor(MODEL.MODEL_PALM_TREE_01));
 
 		Object skyObject = new SphereAssetObject("Sky", 0f, Math.createPositionMatrix(0f, 0f, 0f), 10000f, 10000f,
@@ -90,6 +96,7 @@ public class ProjectManager {
 		//		project.addObject(barrel02);
 		project.addObject(tree01);
 		project.addObject(skyObject);
+		project.addObject(knight);
 
 		currentProject = project;
 	}
