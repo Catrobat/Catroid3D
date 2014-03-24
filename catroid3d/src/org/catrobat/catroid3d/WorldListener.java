@@ -25,9 +25,9 @@ package org.catrobat.catroid3d;
 import org.catrobat.catroid3d.content.Object;
 import org.catrobat.catroid3d.io.StorageHandler;
 import org.catrobat.catroid3d.physics.World;
-import org.catrobat.catroid3d.ui.screen.CustomRenderableSorter;
 import org.catrobat.catroid3d.ui.screen.MainMenuScreen;
 import org.catrobat.catroid3d.ui.screen.ProjectBuildScreen;
+import org.catrobat.catroid3d.utils.CustomRenderableSorter;
 import org.catrobat.catroid3d.utils.Log;
 
 import com.badlogic.gdx.ApplicationListener;

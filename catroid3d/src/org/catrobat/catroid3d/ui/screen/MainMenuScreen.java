@@ -25,12 +25,11 @@ package org.catrobat.catroid3d.ui.screen;
 import org.catrobat.catroid3d.WorldListener;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class MainMenuScreen implements Screen {
+public class MainMenuScreen extends BaseScreen {
 
 	private WorldListener worldListener;
 	private SpriteBatch spriteBatch;
@@ -47,16 +46,6 @@ public class MainMenuScreen implements Screen {
 	}
 
 	@Override
-	public void hide() {
-
-	}
-
-	@Override
-	public void pause() {
-
-	}
-
-	@Override
 	public void render(float delta) {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		spriteBatch.begin();
@@ -66,16 +55,6 @@ public class MainMenuScreen implements Screen {
 		if (Gdx.input.justTouched()) {
 			worldListener.disposeMainMenu();
 		}
-	}
-
-	@Override
-	public void resize(int width, int height) {
-
-	}
-
-	@Override
-	public void resume() {
-
 	}
 
 	@Override

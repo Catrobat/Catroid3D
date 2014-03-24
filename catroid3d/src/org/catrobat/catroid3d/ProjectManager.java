@@ -76,8 +76,8 @@ public class ProjectManager {
 		//		Object knight = new AnimatedAssetObject("Dog", 20f, Math.createPositionMatrix(200f, 2f, 250f).scl(2f),
 		//				Constants.ANIMATED_MODEL_DESCRIPTOR_ARRAY.get(ANIMATED_MODEL.MODEL_KNIGHT.ordinal()));
 
-		Object knight = new ComplexAssetObject("Knight", 0f, Math.createPositionMatrix(200f, 0f, 250f),
-				Util.getModelDescriptor(MODEL.MODEL_KNIGHT));
+		//		Object knight = new ComplexAssetObject("Knight", 0f, Math.createPositionMatrix(200f, 0f, 250f),
+		//				Util.getModelDescriptor(MODEL.MODEL_KNIGHT));
 
 		//		Object barrel02 = new ComplexAssetObject("Barrel02", 10f, Math.createPositionMatrix(30f, 0f, 200f),
 		//				Util.getModelDescriptor(MODEL.MODEL_BIG_WOOD_BARREL));
@@ -96,7 +96,7 @@ public class ProjectManager {
 		//		project.addObject(barrel02);
 		project.addObject(tree01);
 		project.addObject(skyObject);
-		project.addObject(knight);
+		//		project.addObject(knight);
 
 		currentProject = project;
 	}

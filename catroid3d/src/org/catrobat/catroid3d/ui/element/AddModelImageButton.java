@@ -39,6 +39,7 @@ public class AddModelImageButton extends ImageButton {
 
 	public AddModelImageButton(MODEL model, ObjectHandler addObjectButton) {
 		super(ProjectManager.getInstance().getSkin(), Util.getModelDescriptor(model).getNameInSkinFile());
+		this.setName(Util.getModelDescriptor(model).getNameInSkinFile());
 		modelDescriptor = Util.getModelDescriptor(model);
 		this.objectHandler = addObjectButton;
 

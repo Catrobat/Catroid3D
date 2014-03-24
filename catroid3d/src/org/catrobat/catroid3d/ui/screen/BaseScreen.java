@@ -20,43 +20,58 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.catrobat.catroid3d.ui.element;
+package org.catrobat.catroid3d.ui.screen;
 
-import org.catrobat.catroid3d.ProjectManager;
+import java.util.HashMap;
 
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 
-public class ToggleOnOffButton extends Button {
+public class BaseScreen implements Screen {
 
-	private boolean isPressed = false;
+	protected HashMap<String, Button> buttonMap;
 
-	public ToggleOnOffButton(String styleName) {
-		super(ProjectManager.getInstance().getSkin(), styleName);
-		this.setName(styleName);
-		addListener(new InputListener() {
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				setIsPressed(!isPressed);
-				return true;
-			}
-
-		});
+	public BaseScreen() {
+		buttonMap = new HashMap<String, Button>();
 	}
 
-	/* Override for use */
-	public void doIfPressed() {
-	}
-
-	public void setIsPressed(boolean isPressed) {
-		this.isPressed = isPressed;
-		doIfPressed();
+	public Button getButton(String buttonName) {
+		return buttonMap.get(buttonName);
 	}
 
 	@Override
-	public boolean isPressed() {
-		return isPressed;
+	public void render(float delta) {
+
+	}
+
+	@Override
+	public void resize(int width, int height) {
+
+	}
+
+	@Override
+	public void show() {
+
+	}
+
+	@Override
+	public void hide() {
+
+	}
+
+	@Override
+	public void pause() {
+
+	}
+
+	@Override
+	public void resume() {
+
+	}
+
+	@Override
+	public void dispose() {
+
 	}
 
 }

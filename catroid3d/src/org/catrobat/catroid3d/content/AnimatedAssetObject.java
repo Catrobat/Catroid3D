@@ -60,7 +60,7 @@ public class AnimatedAssetObject extends Object {
 		model = StorageHandler.getInstance().getAsset(modelDescriptor.getModelPath());
 		Array<Attribute> materialAttributes = new Array<Attribute>();
 		materialAttributes.add(new TextureAttribute(TextureAttribute.Diffuse, (Texture) StorageHandler.getInstance()
-				.getAsset(modelDescriptor.getTexturePath())));
+				.getAsset(modelDescriptor.getTexturePath("tga"))));
 		materialAttributes.add(new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, 1f));
 		if (textureType == TEXTURE_TYPE.TEXTURE_BEHIND) {
 			materialAttributes.add(new IntAttribute(IntAttribute.CullFace, 0));

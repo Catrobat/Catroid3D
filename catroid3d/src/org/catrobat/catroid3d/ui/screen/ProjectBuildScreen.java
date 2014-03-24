@@ -22,8 +22,7 @@
  */
 package org.catrobat.catroid3d.ui.screen;
 
-import java.util.HashMap;
-
+import org.catrobat.catroid3d.common.Constants;
 import org.catrobat.catroid3d.io.GestureDetector;
 import org.catrobat.catroid3d.io.GestureHandler;
 import org.catrobat.catroid3d.ui.ObjectHandler;
@@ -35,17 +34,14 @@ import org.catrobat.catroid3d.ui.element.MoveObjectButton;
 import org.catrobat.catroid3d.ui.element.RemoveGroundButton;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
-public class ProjectBuildScreen implements Screen {
+public class ProjectBuildScreen extends BaseScreen {
 
 	private VerticalGroup controlPane;
-	private HashMap<Class<?>, Button> buttonMap = new HashMap<Class<?>, Button>();
 	private Stage stage;
 	private GestureDetector gestureDetector;
 	private GestureHandler gestureHandler;
@@ -79,11 +75,11 @@ public class ProjectBuildScreen implements Screen {
 		RemoveGroundButton removeGroundButton = new RemoveGroundButton(gestureHandler);
 		removeGroundButton.setVisible(false);
 		GroundButton groundButton = new GroundButton(gestureHandler, addGroundButton, removeGroundButton);
-		buttonMap.put(MoveCameraButton.class, moveCameraButton);
-		buttonMap.put(MoveObjectButton.class, moveObjectButton);
-		buttonMap.put(GroundButton.class, groundButton);
-		buttonMap.put(AddGroundButton.class, addGroundButton);
-		buttonMap.put(RemoveGroundButton.class, removeGroundButton);
+		buttonMap.put(Constants.UI_MOVE_CAMERA_BUTTON, moveCameraButton);
+		buttonMap.put(Constants.UI_MOVE_OBJECT_BUTTON, moveObjectButton);
+		buttonMap.put(Constants.UI_GROUND_BUTTON, groundButton);
+		buttonMap.put(Constants.UI_ADD_GROUND_BUTTON, addGroundButton);
+		buttonMap.put(Constants.UI_REMOVE_GROUND_BUTTON, removeGroundButton);
 		controlPane = new VerticalGroup();
 		controlPane.setAlignment(Align.left | Align.top);
 		controlPane.addActor(moveCameraButton);
@@ -113,10 +109,6 @@ public class ProjectBuildScreen implements Screen {
 		controlPane.setVisible(true);
 	}
 
-	public Button getButton(Class<?> clazz) {
-		return buttonMap.get(clazz);
-	}
-
 	public Stage getStage() {
 		return stage;
 	}
@@ -127,26 +119,6 @@ public class ProjectBuildScreen implements Screen {
 
 	public ObjectHandler getObjectHandler() {
 		return objectHandler;
-	}
-
-	@Override
-	public void hide() {
-
-	}
-
-	@Override
-	public void pause() {
-
-	}
-
-	@Override
-	public void resume() {
-
-	}
-
-	@Override
-	public void dispose() {
-
 	}
 
 }
