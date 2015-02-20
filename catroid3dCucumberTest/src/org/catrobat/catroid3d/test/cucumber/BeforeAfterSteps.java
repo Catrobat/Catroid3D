@@ -19,9 +19,7 @@ public class BeforeAfterSteps extends ActivityInstrumentationTestCase2<WorldActi
 	@Before
 	public void before() {
 		Log.d(CucumberInstrumentation.TAG, "before step");
-
 		solo = new SoloLibgdxWrapper(getInstrumentation(), getActivity());
-		solo.clickOnButton("asf");
 		Cucumber.put(Cucumber.KEY_SOLO_WRAPPER, solo);
 	}
 	

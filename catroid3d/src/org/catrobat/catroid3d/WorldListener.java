@@ -2,21 +2,21 @@
  *  Catroid: An on-device visual programming system for Android devices
  *  Copyright (C) 2010-2013 The Catrobat Team
  *  (<http://developer.catrobat.org/credits>)
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
  *  published by the Free Software Foundation, either version 3 of the
  *  License, or (at your option) any later version.
- *  
+ *
  *  An additional term exception under section 7 of the GNU Affero
  *  General Public License, version 3, is available at
  *  http://developer.catrobat.org/license_additional_term
- *  
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Affero General Public License for more details.
- *  
+ *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -25,6 +25,7 @@ package org.catrobat.catroid3d;
 import org.catrobat.catroid3d.content.Object;
 import org.catrobat.catroid3d.io.StorageHandler;
 import org.catrobat.catroid3d.physics.World;
+import org.catrobat.catroid3d.ui.screen.BaseScreen;
 import org.catrobat.catroid3d.ui.screen.MainMenuScreen;
 import org.catrobat.catroid3d.ui.screen.ProjectBuildScreen;
 import org.catrobat.catroid3d.utils.CustomRenderableSorter;
@@ -61,6 +62,7 @@ public class WorldListener implements ApplicationListener {
 	private Object groundObject;
 	private Object skyObject;
 	private Environment environment;
+	private BaseScreen activeScreen;
 
 	@Override
 	public void create() {
@@ -100,7 +102,7 @@ public class WorldListener implements ApplicationListener {
 		//				TEXTURE.TEXTURE_GRASS_01);
 		//		groundObject.setRenderType(OBJECT_TYPE.GROUND);
 		//		world.addEntity(groundObject.createEntityObject());
-
+		//
 		//		for (int i = 0; i < 200; i++) {
 		//			Object grass01 = new ComplexAssetObject("Gras01" + i, 0f, Math.createRandomPosition(-500, 500),
 		//					MODEL.MODEL_GRASS_01);
@@ -122,7 +124,7 @@ public class WorldListener implements ApplicationListener {
 		//			plant02.setHasRigidBody(false);
 		//			world.addEntity(plant02.createEntityObject());
 		//		}
-
+		//
 		//		Object barrel01 = new ComplexAssetObject("Barrel01", 10f, Math.createPositionMatrix(0f, 0f, -100f),
 		//				MODEL.MODEL_BIG_WOOD_BARREL);
 		//		barrel01.setTextureType(TEXTURE_TYPE.NONE);
@@ -147,7 +149,7 @@ public class WorldListener implements ApplicationListener {
 		for (Object object : ProjectManager.getInstance().getCurrentProject().getObjectList()) {
 			world.addEntity(object.createEntityObject());
 		}
-
+		disposeMainMenu();
 		projectBuildScreen = new ProjectBuildScreen();
 		projectBuildScreen.show();
 		loading = false;
@@ -214,6 +216,10 @@ public class WorldListener implements ApplicationListener {
 		if (!loading) {
 			mainMenuScreen.dispose();
 		}
+	}
+
+	public boolean isProjectLoading() {
+		return loading;
 	}
 
 	@Override

@@ -64,6 +64,7 @@ public class ProjectBuildScreen extends BaseScreen {
 	@Override
 	public void show() {
 		stage = new Stage();
+
 		gestureHandler = new GestureHandler(this);
 		gestureDetector = new GestureDetector(gestureHandler);
 		Gdx.input.setInputProcessor(gestureDetector);
@@ -97,6 +98,7 @@ public class ProjectBuildScreen extends BaseScreen {
 
 		AddObjectButton addObjectButton = new AddObjectButton(objectHandler);
 		controlPane.addActor(addObjectButton);
+		controlPane.validate();
 		stage.addActor(controlPane);
 
 	}

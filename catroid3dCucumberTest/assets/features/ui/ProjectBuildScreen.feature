@@ -18,9 +18,15 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-Feature: Main menu
+Feature: Project build screen
 
   In order to give the user a starting point
   
-  Scenario: The MainMenu has a Splash Screen
+  Scenario: The ProjectBuildScreen has several toggle on-off buttons which can either be checked or not
   	Given I am in the main menu
+  	When I press on the splash screen
+  	Then I should see the world
+  	When I press the MoveCameraButton
+  	Then the MoveCameraButton should be checked
+  	When I press the MoveObjectButton
+  	Then the MoveObjectButton should be checked
