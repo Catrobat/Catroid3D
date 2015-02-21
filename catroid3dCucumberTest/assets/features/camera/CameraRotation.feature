@@ -18,17 +18,19 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-Feature: Project build screen
+Feature: Camera rotation
 
-  In order to give the user a starting point
-  
-  Background: 
-  	Given I am in the main menu
-  	When I press on the splash screen
-  	Then I should see the world
-  	
-  Scenario: The ProjectBuildScreen has several toggle on-off buttons which can either be checked or not
-  	When I press the MoveCameraButton
-  	Then the MoveCameraButton should be checked
-  	When I press the MoveObjectButton
-  	Then the MoveObjectButton should be checked
+  The camera has several functions. It can be rotated, moving up and down, moving left and right
+  and zooming in and out.
+  The feature should the cameras rotation behaviour.
+
+  Background:
+    Given I am in the main menu
+    When I press on the splash screen
+    Then I should see the world
+    
+  Scenario: Swiping finger the left
+    When I swipe my finger to the left
+    Then the camera should rotate to the right
+    
+
