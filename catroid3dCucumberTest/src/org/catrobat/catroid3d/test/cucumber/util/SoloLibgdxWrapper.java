@@ -13,10 +13,12 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.util.Log;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.jayway.android.robotium.solo.Solo;
+import com.robotium.solo.Solo;
 
 import cucumber.api.android.CucumberInstrumentation;
 
@@ -66,6 +68,41 @@ public class SoloLibgdxWrapper extends Solo {
 		else {
 			return getFieldFromObject(worldListener, "projectBuildScreen", ProjectBuildScreen.class);
 		}
+	}
+	
+	public PerspectiveCamera getCamera() {
+		return worldListener.movingCamera;
+	}
+	
+	public void swipeLeft(int stepCount) {
+		int width = Gdx.graphics.getWidth();
+		int height = Gdx.graphics.getHeight();
+		float startPointX = width*3/4f;
+		float endPointX = width/4f;
+		drag(startPointX,endPointX, height/2f, height/2f, stepCount);		
+	}
+	public void swipeRight(int stepCount) {
+		int width = Gdx.graphics.getWidth();
+		int height = Gdx.graphics.getHeight();
+		float startPointX = width/4f;
+		float endPointX = width*3/4f;
+		drag(startPointX,endPointX, height/2f, height/2f, stepCount);	
+	}
+	
+	public void swipeUp(int stepCount) {
+		int width = Gdx.graphics.getWidth();
+		int height = Gdx.graphics.getHeight();
+		float startPointY = height*3/4f;
+		float endPointY = height/4f;
+		drag(width/2f, width/2f, startPointY, endPointY, stepCount);	
+	}
+	
+	public void swipeDown(int stepCount) {
+		int width = Gdx.graphics.getWidth();
+		int height = Gdx.graphics.getHeight();
+		float startPointY = height/4f;
+		float endPointY = height*3/4f;
+		drag(width/2f, width/2f, startPointY, endPointY, stepCount);	
 	}
 	
 	private Vector2 libgdxLocalCoordinatesToSoloCoordinates(Actor actor) {

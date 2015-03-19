@@ -29,8 +29,8 @@ Feature: Camera rotation
     When I press on the splash screen
     Then I should see the world
     
-  Scenario: Swiping finger the left
+  Scenario: Swiping finger to the left
     When I swipe my finger to the left
-    Then the camera should rotate to the right
+    Then the camera should rotate to the right on the correct position
     
 
