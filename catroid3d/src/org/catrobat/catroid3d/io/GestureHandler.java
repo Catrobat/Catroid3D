@@ -24,15 +24,13 @@ package org.catrobat.catroid3d.io;
 
 import org.catrobat.catroid3d.ProjectManager;
 import org.catrobat.catroid3d.WorldListener;
+import org.catrobat.catroid3d.common.Constants;
 import org.catrobat.catroid3d.io.GestureDetector.GestureListener;
 import org.catrobat.catroid3d.physics.CollisionDetector;
 import org.catrobat.catroid3d.physics.Entity;
 import org.catrobat.catroid3d.physics.GroundBuilder;
 import org.catrobat.catroid3d.physics.World;
-import org.catrobat.catroid3d.ui.element.GroundButton;
 import org.catrobat.catroid3d.ui.element.MoveCameraButton;
-import org.catrobat.catroid3d.ui.element.MoveObjectButton;
-import org.catrobat.catroid3d.ui.element.RemoveGroundButton;
 import org.catrobat.catroid3d.ui.screen.ProjectBuildScreen;
 
 import com.badlogic.gdx.Gdx;
@@ -101,7 +99,7 @@ public class GestureHandler implements GestureListener {
 		resetEntityToMove();
 
 		groundBuilder.setCursorPosition(x, y);
-		if (screen.getButton(RemoveGroundButton.class).isPressed()) {
+		if (screen.getButton(Constants.UI_REMOVE_GROUND_BUTTON).isPressed()) {
 			Entity entity = collisionDetector.hasHitStaticObjectFromScreenCoords(x, y);
 			if (entity != null) {
 				world.removeEntity(entity);
@@ -132,15 +130,15 @@ public class GestureHandler implements GestureListener {
 	@Override
 	public boolean pan(float x, float y, float deltaX, float deltaY) {
 		boolean result = false;
-		if (entityToMove != null && screen.getButton(MoveObjectButton.class).isPressed()) {
+		if (entityToMove != null && screen.getButton(Constants.UI_MOVE_OBJECT_BUTTON).isPressed()) {
 			Vector3 worldGroundCoords = collisionDetector.screenCoordsToWorldGroundCoords(x, y);
 			if (worldGroundCoords != null) {
 				entityToMove.setWorldTransform(new Matrix4().setToTranslation(worldGroundCoords));
 				result = true;
 			}
-		} else if (screen.getButton(GroundButton.class).isPressed()) {
+		} else if (screen.getButton(Constants.UI_GROUND_BUTTON).isPressed()) {
 			groundBuilder.setCursorPosition(x, y);
-		} else if (((MoveCameraButton) screen.getButton(MoveCameraButton.class)).isPressed()) {
+		} else if (((MoveCameraButton) screen.getButton(Constants.UI_MOVE_CAMERA_BUTTON)).isPressed()) {
 			movingCamera.translate(tmpV1.set(movingCamera.direction).crs(movingCamera.up).nor()
 					.scl(-deltaX * translateUnits));
 			movingCamera.translate(tmpV2.set(movingCamera.up).scl(-deltaY * translateUnits));

@@ -10,5 +10,6 @@
     <string name="static_object">Static object</string>
     <string name="dynamic_object">Dynamic object</string>
     <string name="simple_object">Simple object</string>
+    <string name="start">Start</string>
 
 </resources>

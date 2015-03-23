@@ -34,6 +34,7 @@ public class ToggleOnOffButton extends Button {
 
 	public ToggleOnOffButton(String styleName) {
 		super(ProjectManager.getInstance().getSkin(), styleName);
+		this.setName(styleName);
 		addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {

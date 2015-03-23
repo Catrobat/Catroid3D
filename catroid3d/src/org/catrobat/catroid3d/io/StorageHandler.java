@@ -69,7 +69,7 @@ public class StorageHandler {
 			ModelDescriptor modelDescriptor = animatedModelArray.get(index);
 			assetManager.load(modelDescriptor.getModelPath(), Model.class);
 			String name = modelDescriptor.getTexturePath();
-			//			assetManager.load(modelDescriptor.getTexturePath(), Texture.class);
+			assetManager.load(modelDescriptor.getTexturePath("tga"), Texture.class);
 		}
 	}
 

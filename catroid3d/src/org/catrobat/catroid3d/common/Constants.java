@@ -89,7 +89,7 @@ public final class Constants {
 					new ModelDescriptor(ASSET_MODEL_TREE_PATH + "palm_tree_01.g3db", "palm-tree-01"), //
 					new ModelDescriptor(ASSET_MODEL_MISCELLANEOUS_PATH + "big_wood_barrel.g3db", "big-wood-barrel"), //
 					new ModelDescriptor(ASSET_MODEL_BUSH_PATH + "palm_plant_01.g3db", "palm-plant-01"), //
-					new ModelDescriptor(ASSET_MODEL_ANIMATED_PATH + "Knight.g3db", "dog-01") // 
+			//new ModelDescriptor(ASSET_MODEL_ANIMATED_PATH + "Knight.g3db", "dog-01") //
 			});
 
 	public static enum ANIMATED_MODEL {
@@ -99,7 +99,7 @@ public final class Constants {
 	public static final Array<ModelDescriptor> ANIMATED_MODEL_DESCRIPTOR_ARRAY = new Array<ModelDescriptor>(
 			new ModelDescriptor[] {
 			//
-			new ModelDescriptor(ASSET_MODEL_ANIMATED_PATH + "Knight.g3db", "dog-01"), // 
+			//new ModelDescriptor(ASSET_MODEL_ANIMATED_PATH + "Knight.g3db", "dog-01"), // 
 			});
 
 	// Texture Enum
