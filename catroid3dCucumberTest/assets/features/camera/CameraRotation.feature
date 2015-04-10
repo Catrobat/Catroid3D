@@ -33,4 +33,8 @@ Feature: Camera rotation
     When I swipe my finger to the left
     Then the camera should rotate to the right on the correct position
     
+  Scenario: Swiping finger to the right
+    When I swipe my finger to the right
+    Then the camera should rotate to the left on the correct position
+    
 
