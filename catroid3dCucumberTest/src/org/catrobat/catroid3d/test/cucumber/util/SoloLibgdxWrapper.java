@@ -77,7 +77,8 @@ public class SoloLibgdxWrapper extends Solo {
 	public void swipeLeft(int stepCount) {
 		int width = Gdx.graphics.getWidth();
 		int height = Gdx.graphics.getHeight();
-		float startPointX = width*3/4f;
+//		float startPointX = width*3/4f;
+		float startPointX = width*2/4f;
 		float endPointX = width/4f;
 		drag(startPointX,endPointX, height/2f, height/2f, stepCount);		
 	}

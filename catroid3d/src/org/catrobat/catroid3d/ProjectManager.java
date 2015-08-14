@@ -2,29 +2,31 @@
  *  Catroid: An on-device visual programming system for Android devices
  *  Copyright (C) 2010-2013 The Catrobat Team
  *  (<http://developer.catrobat.org/credits>)
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
  *  published by the Free Software Foundation, either version 3 of the
  *  License, or (at your option) any later version.
- *  
+ *
  *  An additional term exception under section 7 of the GNU Affero
  *  General Public License, version 3, is available at
  *  http://developer.catrobat.org/license_additional_term
- *  
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Affero General Public License for more details.
- *  
+ *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.catrobat.catroid3d;
 
 import org.catrobat.catroid3d.common.Constants;
+import org.catrobat.catroid3d.common.Constants.ANIMATED_MODEL;
 import org.catrobat.catroid3d.common.Constants.MODEL;
 import org.catrobat.catroid3d.common.Constants.TEXTURE;
+import org.catrobat.catroid3d.content.AnimatedAssetObject;
 import org.catrobat.catroid3d.content.BoxAssetObject;
 import org.catrobat.catroid3d.content.ComplexAssetObject;
 import org.catrobat.catroid3d.content.Object;
@@ -73,8 +75,8 @@ public class ProjectManager {
 		barrel01.setCollisionFlags(CollisionFlags.CF_NO_CONTACT_RESPONSE);
 		barrel01.setTextureType(TEXTURE_TYPE.NONE);
 
-		//		Object knight = new AnimatedAssetObject("Dog", 20f, Math.createPositionMatrix(200f, 2f, 250f).scl(2f),
-		//				Constants.ANIMATED_MODEL_DESCRIPTOR_ARRAY.get(ANIMATED_MODEL.MODEL_KNIGHT.ordinal()));
+		Object knight = new AnimatedAssetObject("Dog", 20f, Math.createPositionMatrix(200f, 2f, 250f).scl(2f),
+				Constants.ANIMATED_MODEL_DESCRIPTOR_ARRAY.get(ANIMATED_MODEL.MODEL_KNIGHT.ordinal()));
 
 		//		Object knight = new ComplexAssetObject("Knight", 0f, Math.createPositionMatrix(200f, 0f, 250f),
 		//				Util.getModelDescriptor(MODEL.MODEL_KNIGHT));
@@ -96,7 +98,7 @@ public class ProjectManager {
 		//		project.addObject(barrel02);
 		project.addObject(tree01);
 		project.addObject(skyObject);
-		//		project.addObject(knight);
+		project.addObject(knight);
 
 		currentProject = project;
 	}
