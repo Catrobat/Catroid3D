@@ -18,29 +18,32 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-Feature: Camera rotation
+Feature: Camera moving
 
-  If no other menu button is selected, the camera should be in rotation mode.
+  If the camere move button is activated, then the camera should move
+  on x and y axis.
 
   Background:
     Given I am in the main menu
     When I press on the splash screen
     Then I should see the world
+    When I press the camera move button
+    Then I should be in the camera moving mode
     
   Scenario: Swiping my finger to the left
     When I swipe my finger to the left
-    Then the camera should rotate to the right on the correct position
+    Then the camera should move to the right on the correct position
     
   Scenario: Swiping my finger to the right
     When I swipe my finger to the right
-    Then the camera should rotate to the left on the correct position
+    Then the camera should move to the left on the correct position
     
   Scenario: Swiping my finger downwards
     When I swipe my finger downwards
-    Then the camera should rotate upwards on the correct position
+    Then the camera should move upwards on the correct position
     
   Scenario: Swiping my finger upwards
     When I swipe my finger upwards
-    Then the camera should rotate downwards on the correct position
+    Then the camera should move downwards on the correct position
     
 
