@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 
 import org.catrobat.catroid3d.ProjectManager;
 import org.catrobat.catroid3d.WorldListener;
+import org.catrobat.catroid3d.ui.ObjectHandler;
 import org.catrobat.catroid3d.ui.element.ToggleOnOffButton;
 import org.catrobat.catroid3d.ui.screen.BaseScreen;
 import org.catrobat.catroid3d.ui.screen.MainMenuScreen;
@@ -18,6 +19,7 @@ import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.robotium.solo.Solo;
 
 import cucumber.api.android.CucumberInstrumentation;
@@ -51,6 +53,31 @@ public class SoloLibgdxWrapper extends Solo {
 			if(buttonToClick instanceof ToggleOnOffButton)
 			{
 				return buttonToClick.isChecked();
+			}
+		} catch(Exception e) {
+			Log.e(CucumberInstrumentation.TAG, e.toString());
+		}
+		return false;
+	}
+	
+	public boolean isButtonVisible(String buttonId) {
+		try {
+			Button buttonToClick = getActiveScreen().getButton(buttonId);
+			return buttonToClick.isVisible();
+		} catch(Exception e) {
+			Log.e(CucumberInstrumentation.TAG, e.toString());
+		}
+		return false;
+	}
+	
+	public boolean isChooseObjectSplitPaneVisible() {
+		try {
+			BaseScreen screen = getActiveScreen();
+			if(screen instanceof ProjectBuildScreen)
+			{
+				ObjectHandler objectHandler = getFieldFromObject((ProjectBuildScreen)screen, "objectHandler", ObjectHandler.class);
+				SplitPane chooseObjectSplitPane = getFieldFromObject(objectHandler, "chooseObjectSplitPane", SplitPane.class);
+				return chooseObjectSplitPane.isVisible();
 			}
 		} catch(Exception e) {
 			Log.e(CucumberInstrumentation.TAG, e.toString());

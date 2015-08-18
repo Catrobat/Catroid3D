@@ -37,6 +37,17 @@ public class CameraSteps extends AndroidTestCase {
 //		double z = camera.position.z - startPosition.z;
 //		double alt = Math.toDegrees(Math.atan2(y, Math.sqrt(x*x + z*z)));
 //		double az = Math.toDegrees(Math.atan2(-x, -z));
+//		Vector3 center = new Vector3(startPosition);
+//		center = center.sub(camera.position);
+//		Vector3 right = new Vector3(camera.direction);
+//		right = right.crs(0, 1, 0).nor();
+//		Vector3 up = new Vector3(right);
+//		up = up.crs(camera.direction);
+//		center.set(center.dot(right), center.dot(up), center.dot(camera.direction));
+		
+		double azimuth = UtilTest.calculateAzimuthAngle(camera.position, camera.direction, startPosition, true);
+		double altitude = UtilTest.calculateAltitudeAngle(camera.position, camera.direction, startPosition, true);
+		
 		assertTrue(UtilTest.evaluateDistanceOfPosition(startPosition, camera.position, 1979f));
 		assertTrue(UtilTest.evaluateDistanceOfDirection(startDirection, camera.direction, 1.8f));
 	}

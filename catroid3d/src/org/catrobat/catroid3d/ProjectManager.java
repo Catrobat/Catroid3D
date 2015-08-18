@@ -85,6 +85,28 @@ public class ProjectManager {
 		//				Util.getModelDescriptor(MODEL.MODEL_BIG_WOOD_BARREL));
 		//		barrel02.setTextureType(TEXTURE_TYPE.NONE);
 
+		for (int i = 0; i < 200; i++) {
+			Object grass01 = new ComplexAssetObject("Gras01" + i, 0f, Math.createRandomPosition(-500, 500),
+					Util.getModelDescriptor(MODEL.MODEL_GRASS_01));
+			grass01.setHasRigidBody(false);
+			project.addObject(grass01);
+			Object grass02 = new ComplexAssetObject("Gras02" + i, 0f, Math.createRandomPosition(-500, 500),
+					Util.getModelDescriptor(MODEL.MODEL_GRASS_02));
+			grass02.setHasRigidBody(false);
+			project.addObject(grass02);
+		}
+
+		for (int i = 0; i < 10; i++) {
+			Object plant01 = new ComplexAssetObject("Plant01" + i, 0f, Math.createRandomPosition(-400, 400),
+					Util.getModelDescriptor(MODEL.MODEL_TROPICAL_PLANT_01));
+			plant01.setHasRigidBody(false);
+			project.addObject(plant01);
+			Object plant02 = new ComplexAssetObject("Plant02" + i, 0f, Math.createRandomPosition(-400, 400),
+					Util.getModelDescriptor(MODEL.MODEL_TROPICAL_PLANT_02));
+			plant02.setHasRigidBody(false);
+			project.addObject(plant02);
+		}
+
 		Object tree01 = new ComplexAssetObject("Tree01", 0f, Math.createPositionMatrix(-200f, 0f, 300f).scl(2f),
 				Util.getModelDescriptor(MODEL.MODEL_PALM_TREE_01));
 

@@ -20,7 +20,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 Feature: Main menu
 
-  In order to give the user a starting point
+  Main menu is currently a splash screen 
+  which can be pressed to see the world view.
   
   Scenario: The main menu has a splash screen
   	Given I am in the main menu

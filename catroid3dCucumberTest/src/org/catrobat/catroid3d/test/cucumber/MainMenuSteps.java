@@ -19,7 +19,7 @@ public class MainMenuSteps extends AndroidTestCase {
 	public void I_am_in_the_main_menu() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
 		solo.waitForActivity(WorldActivity.class, 5000);
-		//solo.sleep(1000);
+		solo.sleep(1000);
 		try {
 			assertTrue("I am not in the main menu.", solo.getActiveScreen() instanceof MainMenuScreen);
 		} catch (Exception e) {
