@@ -4,6 +4,35 @@ import com.badlogic.gdx.math.Vector3;
 
 public class UtilTest {
 	
+	public static boolean evaluateRotation(Vector3 position, String x, String y, String z) {
+		if(isCoordinateGreaterThanNull(x)) {
+			if(position.x < 0) return false;
+		}
+		else {
+			if(position.x > 0) return false;
+		}
+		if(isCoordinateGreaterThanNull(y)) {
+			if(position.y < 0) return false;
+		}
+		else {
+			if(position.y > 0) return false;
+		}
+		if(isCoordinateGreaterThanNull(z)) {
+			if(position.z < 0) return false;
+		}
+		else {
+			if(position.z > 0) return false;
+		}
+		return true;
+	}
+	
+	private static boolean isCoordinateGreaterThanNull(String cucumberCoordinate) {
+		if(cucumberCoordinate.contentEquals(">0")) {
+			return true;
+		}
+		return false;
+	}
+	
 	public static boolean evaluateDistanceOfPosition(Vector3 startPosition, Vector3 endPosition, float distancePosition, float threshold) {
 		float currentDistancePostition = startPosition.dst(endPosition);
 		if((currentDistancePostition-threshold) <= distancePosition &&  distancePosition <= (currentDistancePostition+threshold)){

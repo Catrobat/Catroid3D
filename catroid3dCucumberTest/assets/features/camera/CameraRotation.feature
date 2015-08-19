@@ -27,20 +27,44 @@ Feature: Camera rotation
     When I press on the splash screen
     Then I should see the world
     
-  Scenario: Swiping my finger to the left
-    When I swipe my finger to the left
-    Then the camera should rotate to the right on the correct position
+  Scenario Outline: Swiping my finger to the left
+    When I swipe my finger to the left and rotate the camera around <Degree>
+    Then the camera should rotate to the right and x should be "<x>" and y should be "<y>" and z should be "<z>"
     
-  Scenario: Swiping my finger to the right
-    When I swipe my finger to the right
-    Then the camera should rotate to the left on the correct position
+    Examples:
+	   | Degree | x  | y  | z  |
+	   | 90     | >0 | >0 | <0 |
+	   | 180    | <0 | >0 | <0 |
+	   | 270    | <0 | >0 | >0 |
     
-  Scenario: Swiping my finger downwards
-    When I swipe my finger downwards
-    Then the camera should rotate upwards on the correct position
+  Scenario Outline: Swiping my finger to the right
+    When I swipe my finger to the right and rotate the camera around <Degree>
+    Then the camera should rotate to the left and x should be "<x>" and y should be "<y>" and z should be "<z>"
     
-  Scenario: Swiping my finger upwards
-    When I swipe my finger upwards
-    Then the camera should rotate downwards on the correct position
+    Examples:
+	   | Degree | x  | y  | z  |
+	   | 90     | <0 | >0 | >0 |
+	   | 180    | <0 | >0 | <0 |
+	   | 270    | >0 | >0 | <0 |
+    
+  Scenario Outline: Swiping my finger downwards
+    When I swipe my finger downwards and rotate the camera around <Degree>
+    Then the camera should rotate upwards and x should be "<x>" and y should be "<y>" and z should be "<z>"
+    
+    Examples:
+	   | Degree | x  | y  | z  |
+	   | 90     | <0 | >0 | <0 |
+	   | 180    | <0 | <0 | <0 |
+	   | 270    | >0 | <0 | >0 |
+    
+  Scenario Outline: Swiping my finger upwards
+    When I swipe my finger upwards and rotate the camera around <Degree>
+    Then the camera should rotate downwards and x should be "<x>" and y should be "<y>" and z should be "<z>"
+    
+    Examples:
+	   | Degree | x  | y  | z  |
+	   | 90     | >0 | <0 | >0 |
+	   | 180    | <0 | <0 | <0 |
+	   | 270    | <0 | >0 | <0 |
     
 

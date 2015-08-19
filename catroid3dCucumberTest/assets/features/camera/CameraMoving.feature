@@ -32,18 +32,18 @@ Feature: Camera moving
     
   Scenario: Swiping my finger to the left
     When I swipe my finger to the left
-    Then the camera should move to the right on the correct position
+    Then the camera should move to the right
     
   Scenario: Swiping my finger to the right
     When I swipe my finger to the right
-    Then the camera should move to the left on the correct position
+    Then the camera should move to the left
     
   Scenario: Swiping my finger downwards
     When I swipe my finger downwards
-    Then the camera should move upwards on the correct position
+    Then the camera should move upwards
     
   Scenario: Swiping my finger upwards
     When I swipe my finger upwards
-    Then the camera should move downwards on the correct position
+    Then the camera should move downwards
     
 

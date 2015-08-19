@@ -2,21 +2,21 @@
  *  Catroid: An on-device visual programming system for Android devices
  *  Copyright (C) 2010-2013 The Catrobat Team
  *  (<http://developer.catrobat.org/credits>)
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
  *  published by the Free Software Foundation, either version 3 of the
  *  License, or (at your option) any later version.
- *  
+ *
  *  An additional term exception under section 7 of the GNU Affero
  *  General Public License, version 3, is available at
  *  http://developer.catrobat.org/license_additional_term
- *  
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Affero General Public License for more details.
- *  
+ *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -48,6 +48,7 @@ public class GestureHandler implements GestureListener {
 	private Vector3 target = new Vector3();
 	private float startX;
 	private float startY;
+	private boolean isZooming = false;
 
 	private Entity entityToMove = null;
 	private PerspectiveCamera collisionCamera;
@@ -72,6 +73,7 @@ public class GestureHandler implements GestureListener {
 	@Override
 	public boolean touchDown(float x, float y, int pointer, int button) {
 		boolean result = false;
+		isZooming = false;
 		startX = x;
 		startY = y;
 		result = screen.getStage().touchDown((int) x, (int) y, pointer, button);
@@ -144,14 +146,16 @@ public class GestureHandler implements GestureListener {
 			movingCamera.translate(tmpV2.set(movingCamera.up).scl(-deltaY * translateUnits));
 			target.add(tmpV1).add(tmpV2);
 		} else {
-			float rotateDeltaX = (x - startX) / Gdx.graphics.getWidth();
-			float rotateDeltaY = (startY - y) / Gdx.graphics.getHeight();
-			startX = x;
-			startY = y;
-			tmpV1.set(movingCamera.direction).crs(movingCamera.up).y = 0f;
-			movingCamera.rotateAround(target, tmpV1.nor(), rotateDeltaY * rotateAngle);
-			movingCamera.rotateAround(target, Vector3.Y, rotateDeltaX * -rotateAngle);
-			movingCamera.update();
+			if (!isZooming) {
+				float rotateDeltaX = (x - startX) / Gdx.graphics.getWidth();
+				float rotateDeltaY = (startY - y) / Gdx.graphics.getHeight();
+				startX = x;
+				startY = y;
+				tmpV1.set(movingCamera.direction).crs(movingCamera.up).y = 0f;
+				movingCamera.rotateAround(target, tmpV1.nor(), rotateDeltaY * rotateAngle);
+				movingCamera.rotateAround(target, Vector3.Y, rotateDeltaX * -rotateAngle);
+				movingCamera.update();
+			}
 		}
 		return result;
 	}
@@ -159,6 +163,7 @@ public class GestureHandler implements GestureListener {
 	@Override
 	public boolean zoom(float initialDistance, float distance) {
 		boolean isZoomIn = initialDistance < distance ? true : false;
+		isZooming = true;
 		if (isZoomIn) {
 			movingCamera.translate(tmpV1.set(movingCamera.direction).scl(zoomUnits));
 		} else {

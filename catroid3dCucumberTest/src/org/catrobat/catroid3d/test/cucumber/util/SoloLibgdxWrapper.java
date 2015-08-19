@@ -101,6 +101,42 @@ public class SoloLibgdxWrapper extends Solo {
 		return worldListener.movingCamera;
 	}
 	
+	public void swipeLeftForRotation(int degrees) {
+		int height = Gdx.graphics.getHeight();
+		int width = Gdx.graphics.getWidth();
+		float lengthToSwipe = degrees/360f * width;
+		float startPointX = width/2 + lengthToSwipe/2;
+		float endPointX = width/2 - lengthToSwipe/2;
+		drag(startPointX, endPointX, height/2f, height/2f, 20);
+	}
+	
+	public void swipeRightForRotation(int degrees) {
+		int height = Gdx.graphics.getHeight();
+		int width = Gdx.graphics.getWidth();
+		float lengthToSwipe = degrees/360f * width;
+		float startPointX = width/2 - lengthToSwipe/2;
+		float endPointX = width/2 + lengthToSwipe/2;
+		drag(startPointX, endPointX, height/2f, height/2f, 20);
+	}
+	
+	public void swipeDownwardsForRotation(int degrees) {
+		int height = Gdx.graphics.getHeight();
+		int width = Gdx.graphics.getHeight();
+		float lengthToSwipe = degrees/360f * height;
+		float startPointY = height/2 - lengthToSwipe/2;
+		float endPointY = height/2 + lengthToSwipe/2;
+		drag(width/2f, width/2f, startPointY, endPointY,  20);
+	}
+	
+	public void swipeUpwardsForRotation(int degrees) {
+		int height = Gdx.graphics.getHeight();
+		int width = Gdx.graphics.getHeight();
+		float lengthToSwipe = degrees/360f * height;
+		float startPointY = height/2 + lengthToSwipe/2;
+		float endPointY = height/2 - lengthToSwipe/2;
+		drag(width/2f, width/2f, startPointY, endPointY,  20);
+	}
+	
 	public void swipeLeft(int stepCount) {
 		int width = Gdx.graphics.getWidth();
 		int height = Gdx.graphics.getHeight();
@@ -113,7 +149,7 @@ public class SoloLibgdxWrapper extends Solo {
 		int width = Gdx.graphics.getWidth();
 		int height = Gdx.graphics.getHeight();
 		float startPointX = width/4f;
-		float endPointX = width*3/4f;
+		float endPointX = width*2/4f;
 		drag(startPointX,endPointX, height/2f, height/2f, stepCount);	
 	}
 	

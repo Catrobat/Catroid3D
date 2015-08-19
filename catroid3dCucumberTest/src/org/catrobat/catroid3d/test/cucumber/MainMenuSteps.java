@@ -24,8 +24,7 @@ public class MainMenuSteps extends AndroidTestCase {
 			assertTrue("I am not in the main menu.", solo.getActiveScreen() instanceof MainMenuScreen);
 		} catch (Exception e) {
 			fail("No active screen!");
-		}
-		
+		}	
 	}
 	
 	@Given("^I press on the splash screen$")
