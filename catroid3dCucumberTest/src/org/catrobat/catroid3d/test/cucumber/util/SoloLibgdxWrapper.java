@@ -12,6 +12,7 @@ import org.catrobat.catroid3d.ui.screen.ProjectBuildScreen;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.graphics.PointF;
 import android.util.Log;
 
 import com.badlogic.gdx.Gdx;
@@ -34,7 +35,7 @@ public class SoloLibgdxWrapper extends Solo {
 	}
 	
 	public void clickOnButton(String buttonId) {
-		try {	
+		try {
 			Button buttonToClick = getActiveScreen().getButton(buttonId);
 			if(buttonToClick == null) {
 				Log.e(CucumberInstrumentation.TAG, "Button (" + buttonId + ") was not found in current screen!");
@@ -85,6 +86,17 @@ public class SoloLibgdxWrapper extends Solo {
 		return false;
 	}
 	
+	public void pinchToZoomIn() {
+		int width = Gdx.graphics.getWidth();
+		int height = Gdx.graphics.getHeight();
+		this.pinchToZoom(new PointF(width*2/6, height/2), new PointF(width*4/6, height/2), new PointF(width/6, height/2), new PointF(width*5/6, height/2));
+	}
+	
+	public void pinchToZoomOut() {
+		int width = Gdx.graphics.getWidth();
+		int height = Gdx.graphics.getHeight();
+		this.pinchToZoom(new PointF(width/6, height/2), new PointF(width*5/6, height/2), new PointF(width*2/6, height/2), new PointF(width*4/6, height/2));
+	}
 	
 	public BaseScreen getActiveScreen() throws IllegalArgumentException, NoSuchFieldException, IllegalAccessException {	
 		boolean showMainMenu = getFieldFromObject(worldListener, "showMainMenu", Boolean.class);

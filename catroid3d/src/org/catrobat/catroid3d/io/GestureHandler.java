@@ -143,7 +143,7 @@ public class GestureHandler implements GestureListener {
 		} else if (((MoveCameraButton) screen.getButton(Constants.UI_MOVE_CAMERA_BUTTON)).isPressed()) {
 			movingCamera.translate(tmpV1.set(movingCamera.direction).crs(movingCamera.up).nor()
 					.scl(-deltaX * translateUnits));
-			movingCamera.translate(tmpV2.set(movingCamera.up).scl(-deltaY * translateUnits));
+			movingCamera.translate(tmpV2.set(movingCamera.up).scl(deltaY * translateUnits));
 			target.add(tmpV1).add(tmpV2);
 		} else {
 			if (!isZooming) {
