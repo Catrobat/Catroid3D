@@ -6,7 +6,7 @@ import java.util.Map;
 
 import cucumber.api.CucumberOptions;
 
-@CucumberOptions(features = {"features/objects"})
+@CucumberOptions(features = {"features/objects/MovingObject.feature"})
 public final class Cucumber {
 	public static final String KEY_SOLO_WRAPPER = "KEY_SOLO_WRAPPER";
 	

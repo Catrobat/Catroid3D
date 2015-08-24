@@ -54,7 +54,7 @@ Feature: Ui elements in the project build screen
   	
   Scenario: Tapping the add-object button
   	When I press the add-object button	
-  	Then the object dialog box should show up
+  	Then the choose object split pane should show up
   	
   	
   	

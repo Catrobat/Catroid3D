@@ -18,39 +18,28 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-Feature: Adding objects to the world view
+Feature: Moving objects onto the world view
 
-  The user can add different objects to
-  the world view via the add-object 
-  button on upper left side.
+  The user can move objects by pressing the 
+  move-object button and drag the object to
+  another position.
   
   Background: 
   	Given I am in the main menu
   	When I press on the splash screen
   	Then I should see the world
-  	When I press the add-object button	
-  	Then the choose object split pane should show up
+  	When I press the move-object button
   	
-  Scenario Outline: Adding new object from the ground objects menu
-  	When I click on the "<image>" image
-  	Then the choose object split pane should hide
-  	And a "<image>" should be placed in the middle of the ground
-
-	Examples:
-	   |  image  |
-	   |  tree   |
-	   |  plant1 |
-	   |  plant2 |
+  Scenario: Moving object onto the ground
+  	When I drag the barrel to the left
+  	Then the barrel should move to the corresponding position
   	
-  	Scenario Outline: Adding new barrel object from the miscellaneous objects menu
-  	When I press the miscellaneous button
-  	And I click on the "<image>" image
-  	Then the choose object split pane should hide
-  	And a "<image>" should be placed in the middle of the ground
+   Scenario: Moving object off the ground
+  	When I drag the barrel to the left off the ground
+  	Then the barrel should move to the corresponding position
+  	And the barrel should fall down because of gravity
 
-	Examples:
-	   |  image  |
-	   |  barrel |
+  	
   	
   	
   	

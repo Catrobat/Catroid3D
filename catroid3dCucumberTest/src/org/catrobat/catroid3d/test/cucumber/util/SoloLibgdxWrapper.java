@@ -1,10 +1,12 @@
 package org.catrobat.catroid3d.test.cucumber.util;
 
-import java.lang.reflect.Field;
-
 import org.catrobat.catroid3d.ProjectManager;
 import org.catrobat.catroid3d.WorldListener;
+import org.catrobat.catroid3d.io.GestureHandler;
+import org.catrobat.catroid3d.physics.CollisionDetector;
+import org.catrobat.catroid3d.physics.Entity;
 import org.catrobat.catroid3d.ui.ObjectHandler;
+import org.catrobat.catroid3d.ui.element.ObjectDialogBox;
 import org.catrobat.catroid3d.ui.element.ToggleOnOffButton;
 import org.catrobat.catroid3d.ui.screen.BaseScreen;
 import org.catrobat.catroid3d.ui.screen.MainMenuScreen;
@@ -17,7 +19,9 @@ import android.util.Log;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
@@ -48,6 +52,31 @@ public class SoloLibgdxWrapper extends Solo {
 		}
 	}
 	
+	public boolean isModelEntityAtPosition(String modelName, Matrix4 position) {
+		Vector3 entityPosition = getModelEntityPosition(modelName);
+		Vector3 positionToCheck = new Vector3();
+		position.getTranslation(positionToCheck);
+		if(entityPosition.epsilonEquals(positionToCheck, 0.5f)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isModelEntityVisible(String modelName) {
+		Entity entity = worldListener.getWorld().getEntity(modelName);
+		if(entity == null) {
+			return false;
+		}
+		return true;
+	}
+	
+	public Vector3 getModelEntityPosition(String modelName) {
+		Entity entity = worldListener.getWorld().getEntity(modelName);
+		Vector3 entityPosition = new Vector3();
+		entity.getObject().getTransformation().getTranslation(entityPosition);
+		return entityPosition;
+	}
+	
 	public boolean isToggleOnOffButtonChecked(String buttonId) {
 		try {
 			Button buttonToClick = getActiveScreen().getButton(buttonId);
@@ -76,14 +105,48 @@ public class SoloLibgdxWrapper extends Solo {
 			BaseScreen screen = getActiveScreen();
 			if(screen instanceof ProjectBuildScreen)
 			{
-				ObjectHandler objectHandler = getFieldFromObject((ProjectBuildScreen)screen, "objectHandler", ObjectHandler.class);
-				SplitPane chooseObjectSplitPane = getFieldFromObject(objectHandler, "chooseObjectSplitPane", SplitPane.class);
+				ObjectHandler objectHandler = UtilTest.getFieldFromObject((ProjectBuildScreen)screen, "objectHandler", ObjectHandler.class);
+				SplitPane chooseObjectSplitPane = UtilTest.getFieldFromObject(objectHandler, "chooseObjectSplitPane", SplitPane.class);
 				return chooseObjectSplitPane.isVisible();
 			}
 		} catch(Exception e) {
 			Log.e(CucumberInstrumentation.TAG, e.toString());
 		}
 		return false;
+	}
+	
+	public boolean isObjectDialogBoxVisible() {
+		try {
+			BaseScreen screen = getActiveScreen();
+			if(screen instanceof ProjectBuildScreen)
+			{
+				ObjectHandler objectHandler = UtilTest.getFieldFromObject((ProjectBuildScreen)screen, "objectHandler", ObjectHandler.class);
+				ObjectDialogBox objectDialogBox = UtilTest.getFieldFromObject(objectHandler, "objectDialogBox", ObjectDialogBox.class);
+				return objectDialogBox.isVisible();
+			}
+		} catch(Exception e) {
+			Log.e(CucumberInstrumentation.TAG, e.toString());
+		}
+		return false;
+	}
+	
+	public void clickLongOnObjectModel(String modelName) {
+		clickLongOnObjectPostion(getModelEntityPosition(modelName));
+	}
+	
+	public void clickLongOnObjectPostion(Vector3 objectPosition) {
+		Vector2 screenCoords = objectWorldCoordsToScreenCoords(objectPosition);
+		this.clickLongOnScreen(screenCoords.x, screenCoords.y);
+	}
+	
+	public void dragObjectModelToPosition(String modelName, Vector3 newPosition) {
+		dragObjectToPosition(getModelEntityPosition(modelName), newPosition);
+	}
+	
+	public void dragObjectToPosition(Vector3 objectPosition, Vector3 newPosition) {
+		Vector2 screenCoords = objectWorldCoordsToScreenCoords(objectPosition);
+		Vector2 newPositionScreenCoords = objectWorldCoordsToScreenCoords(newPosition);
+		this.drag(screenCoords.x, newPositionScreenCoords.x, screenCoords.y, newPositionScreenCoords.y, 20);
 	}
 	
 	public void pinchToZoomIn() {
@@ -99,13 +162,13 @@ public class SoloLibgdxWrapper extends Solo {
 	}
 	
 	public BaseScreen getActiveScreen() throws IllegalArgumentException, NoSuchFieldException, IllegalAccessException {	
-		boolean showMainMenu = getFieldFromObject(worldListener, "showMainMenu", Boolean.class);
-		boolean loading = getFieldFromObject(worldListener, "loading", Boolean.class);
+		boolean showMainMenu = UtilTest.getFieldFromObject(worldListener, "showMainMenu", Boolean.class);
+		boolean loading = UtilTest.getFieldFromObject(worldListener, "loading", Boolean.class);
 		if(showMainMenu || loading) {
-			return getFieldFromObject(worldListener, "mainMenuScreen", MainMenuScreen.class);
+			return UtilTest.getFieldFromObject(worldListener, "mainMenuScreen", MainMenuScreen.class);
 		}
 		else {
-			return getFieldFromObject(worldListener, "projectBuildScreen", ProjectBuildScreen.class);
+			return UtilTest.getFieldFromObject(worldListener, "projectBuildScreen", ProjectBuildScreen.class);
 		}
 	}
 	
@@ -152,8 +215,7 @@ public class SoloLibgdxWrapper extends Solo {
 	public void swipeLeft(int stepCount) {
 		int width = Gdx.graphics.getWidth();
 		int height = Gdx.graphics.getHeight();
-//		float startPointX = width*3/4f;
-		float startPointX = width*2/4f;
+		float startPointX = width*3/4f;
 		float endPointX = width/4f;
 		drag(startPointX,endPointX, height/2f, height/2f, stepCount);		
 	}
@@ -161,7 +223,7 @@ public class SoloLibgdxWrapper extends Solo {
 		int width = Gdx.graphics.getWidth();
 		int height = Gdx.graphics.getHeight();
 		float startPointX = width/4f;
-		float endPointX = width*2/4f;
+		float endPointX = width*3/4f;
 		drag(startPointX,endPointX, height/2f, height/2f, stepCount);	
 	}
 	
@@ -181,6 +243,21 @@ public class SoloLibgdxWrapper extends Solo {
 		drag(width/2f, width/2f, startPointY, endPointY, stepCount);	
 	}
 	
+	private Vector2 objectWorldCoordsToScreenCoords(Vector3 objectWorldCoords) {
+		try {
+			BaseScreen screen = getActiveScreen();
+			if(screen instanceof ProjectBuildScreen)
+			{
+				GestureHandler gestureHandler = UtilTest.getFieldFromObject(screen, "gestureHandler", GestureHandler.class);
+				CollisionDetector collisionDetector = UtilTest.getFieldFromObject(gestureHandler, "collisionDetector", CollisionDetector.class);
+				return collisionDetector.worldGroundCoordsToScreenCoords(objectWorldCoords);
+			}
+		} catch(Exception e) {
+			Log.e(CucumberInstrumentation.TAG, e.toString());
+		}
+		return null;
+	}
+	
 	private Vector2 libgdxLocalCoordinatesToSoloCoordinates(Actor actor) {
 		Vector2 coordinates = new Vector2(0, 0);
 		actor.localToStageCoordinates(coordinates);
@@ -189,12 +266,6 @@ public class SoloLibgdxWrapper extends Solo {
 		coordinates.y -= actor.getHeight()/2.0f;
 		return coordinates;
 		
-	}
-	
-	private <T> T getFieldFromObject(Object object, String fieldName, Class<T> type) throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-		Field field = object.getClass().getDeclaredField(fieldName);
-		field.setAccessible(true);
-		return type.cast(field.get(object));	
 	}
 	
 	

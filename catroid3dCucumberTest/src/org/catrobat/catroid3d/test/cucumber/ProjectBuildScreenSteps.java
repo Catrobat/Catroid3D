@@ -95,12 +95,13 @@ public class ProjectBuildScreenSteps extends AndroidTestCase {
 	@When("^I press the add-object button$")
 	public void i_press_the_add_object_button() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
+		solo.sleep(1000);
 		solo.clickOnButton(Constants.UI_ADD_OBJECT_BUTTON);
-		solo.sleep(2000);
+		solo.sleep(1000);
 	}
 	
-	@Then("^the object dialog box should show up$")
-	public void the_object_dialog_box_should_show_up() {
+	@Then("^the choose object split pane should show up$")
+	public void the_choose_object_split_pane_should_show_up() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
 		assertTrue(solo.isChooseObjectSplitPaneVisible());
 	}

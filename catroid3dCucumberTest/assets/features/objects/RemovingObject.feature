@@ -18,39 +18,28 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-Feature: Adding objects to the world view
+Feature: Removing objects from the world view
 
-  The user can add different objects to
-  the world view via the add-object 
-  button on upper left side.
+  The user can remove objects from
+  the world view via a long click
+  onto the object and the context menu.
   
   Background: 
   	Given I am in the main menu
   	When I press on the splash screen
   	Then I should see the world
-  	When I press the add-object button	
-  	Then the choose object split pane should show up
   	
-  Scenario Outline: Adding new object from the ground objects menu
-  	When I click on the "<image>" image
-  	Then the choose object split pane should hide
-  	And a "<image>" should be placed in the middle of the ground
+  Scenario Outline: Removing object from the world view
+  	When I long click on the "<model>"
+  	Then the object context menu should show up
+  	When I click on the delete button
+  	Then the "<model>" should be removed from the world view
 
 	Examples:
-	   |  image  |
+	   |  model  |
 	   |  tree   |
-	   |  plant1 |
-	   |  plant2 |
-  	
-  	Scenario Outline: Adding new barrel object from the miscellaneous objects menu
-  	When I press the miscellaneous button
-  	And I click on the "<image>" image
-  	Then the choose object split pane should hide
-  	And a "<image>" should be placed in the middle of the ground
-
-	Examples:
-	   |  image  |
 	   |  barrel |
+  	
   	
   	
   	

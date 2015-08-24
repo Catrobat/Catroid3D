@@ -1,5 +1,7 @@
 package org.catrobat.catroid3d.test.cucumber.util;
 
+import java.lang.reflect.Field;
+
 import com.badlogic.gdx.math.Vector3;
 
 public class UtilTest {
@@ -72,6 +74,12 @@ public class UtilTest {
 			return Math.toDegrees(Math.acos(centerVector.nor().dot(projectionVector.nor())));
 		}
 		return Math.acos(centerVector.nor().dot(projectionVector.nor()));
+	}
+	
+	public static <T> T getFieldFromObject(Object object, String fieldName, Class<T> type) throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		Field field = object.getClass().getDeclaredField(fieldName);
+		field.setAccessible(true);
+		return type.cast(field.get(object));	
 	}
 	
 	private static Vector3 transformCoordinateSpaceToCenter(Vector3 fromPosition, Vector3 fromDirection, Vector3 toPosition) {

@@ -2,21 +2,21 @@
  *  Catroid: An on-device visual programming system for Android devices
  *  Copyright (C) 2010-2013 The Catrobat Team
  *  (<http://developer.catrobat.org/credits>)
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
  *  published by the Free Software Foundation, either version 3 of the
  *  License, or (at your option) any later version.
- *  
+ *
  *  An additional term exception under section 7 of the GNU Affero
  *  General Public License, version 3, is available at
  *  http://developer.catrobat.org/license_additional_term
- *  
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Affero General Public License for more details.
- *  
+ *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -27,6 +27,7 @@ import org.catrobat.catroid3d.content.Object;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Plane;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.physics.bullet.collision.ClosestRayResultCallback;
@@ -54,6 +55,11 @@ public class CollisionDetector {
 			worldCoords = new Vector3().set(ray.origin.add(ray.direction.scl(t)));
 		}
 		return worldCoords;
+	}
+
+	public Vector2 worldGroundCoordsToScreenCoords(Vector3 worldCoords) {
+		collisionCamera.project(worldCoords);
+		return new Vector2(worldCoords.x, worldCoords.y);
 	}
 
 	public Entity hasHitObjectFromScreenCoords(float screenX, float screenY) {

@@ -2,21 +2,21 @@
  *  Catroid: An on-device visual programming system for Android devices
  *  Copyright (C) 2010-2013 The Catrobat Team
  *  (<http://developer.catrobat.org/credits>)
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
  *  published by the Free Software Foundation, either version 3 of the
  *  License, or (at your option) any later version.
- *  
+ *
  *  An additional term exception under section 7 of the GNU Affero
  *  General Public License, version 3, is available at
  *  http://developer.catrobat.org/license_additional_term
- *  
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Affero General Public License for more details.
- *  
+ *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -108,7 +108,8 @@ public class ObjectHandler {
 		if (modelDescriptor.equals(Util.getModelDescriptor(MODEL.MODEL_PALM_TREE_01))) {
 			flags = CollisionFlags.CF_STATIC_OBJECT;
 		}
-		ComplexAssetObject object = new ComplexAssetObject("", mass, Math.createCenterPositionMatrix(), modelDescriptor);
+		ComplexAssetObject object = new ComplexAssetObject(modelDescriptor.getNameInSkinFile(), mass,
+				Math.createCenterPositionMatrix(), modelDescriptor);
 		object.setTextureType(TEXTURE_TYPE.NONE);
 		object.setCollisionFlags(flags);
 		ProjectManager.getInstance().getCurrentProject().addObject(object);
@@ -129,7 +130,7 @@ public class ObjectHandler {
 		WorldActivity worldActivity = ProjectManager.getInstance().getWorldActivity();
 		ChooseCategoryObjectButton chooseCategoryGroundObjectButton = addChooseObjectTableEntry(
 				worldActivity.getString(R.string.ground), new MODEL[] { MODEL.MODEL_PALM_TREE_01,
-						MODEL.MODEL_TROPICAL_PLANT_01, MODEL.MODEL_TROPICAL_PLANT_02, MODEL.MODEL_PALM_PLANT_01 });
+					MODEL.MODEL_TROPICAL_PLANT_01, MODEL.MODEL_TROPICAL_PLANT_02, MODEL.MODEL_PALM_PLANT_01 });
 		ChooseCategoryObjectButton chooseCategoryMiscellaneousObjectButton = addChooseObjectTableEntry(
 				worldActivity.getString(R.string.miscellaneous), new MODEL[] { MODEL.MODEL_BIG_WOOD_BARREL });
 		Table chooseCategoryObjectTable = new Table(skin);
@@ -151,10 +152,13 @@ public class ObjectHandler {
 	private ChooseCategoryObjectButton addChooseObjectTableEntry(String category, MODEL[] modelsInCategory) {
 		ChooseCategoryObjectButton chooseObjectCategoryButton = new ChooseCategoryObjectButton(this, category,
 				currentIndex);
+		projectBuildScreen.putButton(category, chooseObjectCategoryButton);
 		currentIndex++;
 		Table chooseObjectTable = new Table();
 		for (MODEL model : modelsInCategory) {
-			chooseObjectTable.add(new AddModelImageButton(model, this)).padRight(0.2f);
+			AddModelImageButton addModelImageButton = new AddModelImageButton(model, this);
+			projectBuildScreen.putButton(model.name(), addModelImageButton);
+			chooseObjectTable.add(addModelImageButton).padRight(0.2f);
 		}
 		chooseObjectTableArray.add(chooseObjectTable);
 		return chooseObjectCategoryButton;

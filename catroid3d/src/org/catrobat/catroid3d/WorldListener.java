@@ -25,7 +25,6 @@ package org.catrobat.catroid3d;
 import org.catrobat.catroid3d.content.Object;
 import org.catrobat.catroid3d.io.StorageHandler;
 import org.catrobat.catroid3d.physics.World;
-import org.catrobat.catroid3d.ui.screen.BaseScreen;
 import org.catrobat.catroid3d.ui.screen.MainMenuScreen;
 import org.catrobat.catroid3d.ui.screen.ProjectBuildScreen;
 import org.catrobat.catroid3d.utils.CustomRenderableSorter;
@@ -59,10 +58,7 @@ public class WorldListener implements ApplicationListener {
 	private MainMenuScreen mainMenuScreen;
 	private ProjectBuildScreen projectBuildScreen;
 	private World world;
-	private Object groundObject;
-	private Object skyObject;
 	private Environment environment;
-	private BaseScreen activeScreen;
 
 	@Override
 	public void create() {
@@ -98,53 +94,6 @@ public class WorldListener implements ApplicationListener {
 	}
 
 	private void doneLoading() {
-		//		groundObject = new BoxAssetObject("Ground", 0f, Math.createPositionMatrix(0f, -1f, 0f), 1000f, 1f, 1000f,
-		//				TEXTURE.TEXTURE_GRASS_01);
-		//		groundObject.setRenderType(OBJECT_TYPE.GROUND);
-		//		world.addEntity(groundObject.createEntityObject());
-		//
-		//		for (int i = 0; i < 200; i++) {
-		//			Object grass01 = new ComplexAssetObject("Gras01" + i, 0f, Math.createRandomPosition(-500, 500),
-		//					MODEL.MODEL_GRASS_01);
-		//			grass01.setHasRigidBody(false);
-		//			world.addEntity(grass01.createEntityObject());
-		//			Object grass02 = new ComplexAssetObject("Gras02" + i, 0f, Math.createRandomPosition(-500, 500),
-		//					MODEL.MODEL_GRASS_02);
-		//			grass02.setHasRigidBody(false);
-		//			world.addEntity(grass02.createEntityObject());
-		//		}
-		//
-		//		for (int i = 0; i < 10; i++) {
-		//			Object plant01 = new ComplexAssetObject("Plant01" + i, 0f, Math.createRandomPosition(-400, 400),
-		//					MODEL.MODEL_TROPICAL_PLANT_01);
-		//			plant01.setHasRigidBody(false);
-		//			world.addEntity(plant01.createEntityObject());
-		//			Object plant02 = new ComplexAssetObject("Plant02" + i, 0f, Math.createRandomPosition(-400, 400),
-		//					MODEL.MODEL_TROPICAL_PLANT_02);
-		//			plant02.setHasRigidBody(false);
-		//			world.addEntity(plant02.createEntityObject());
-		//		}
-		//
-		//		Object barrel01 = new ComplexAssetObject("Barrel01", 10f, Math.createPositionMatrix(0f, 0f, -100f),
-		//				MODEL.MODEL_BIG_WOOD_BARREL);
-		//		barrel01.setTextureType(TEXTURE_TYPE.NONE);
-		//		world.addEntity(barrel01.createEntityObject());
-		//
-		//		Object barrel02 = new ComplexAssetObject("Barrel02", 10f, Math.createPositionMatrix(0f, -30f, -100f),
-		//				MODEL.MODEL_BIG_WOOD_BARREL);
-		//		barrel02.setTextureType(TEXTURE_TYPE.NONE);
-		//		world.addEntity(barrel02.createEntityObject());
-		//
-		//		Object tree01 = new ComplexAssetObject("Tree01", 0f, Math.createPositionMatrix(50f, 0f, -60f),
-		//				MODEL.MODEL_PALM_TREE_01);
-		//		world.addEntity(tree01.createEntityObject());
-		//
-		//		skyObject = new SphereAssetObject("Sky", 0f, Math.createPositionMatrix(0f, 0f, 0f), 10000f, 10000f, 10000f,
-		//				TEXTURE.TEXTURE_SKY_01, 20, 20);
-		//		skyObject.setHasRigidBody(false);
-		//		skyObject.setRenderType(OBJECT_TYPE.SKYLINE);
-		//		world.addEntity(skyObject.createEntityObject());
-
 		ProjectManager.getInstance().loadProject(null);
 		for (Object object : ProjectManager.getInstance().getCurrentProject().getObjectList()) {
 			world.addEntity(object.createEntityObject());
