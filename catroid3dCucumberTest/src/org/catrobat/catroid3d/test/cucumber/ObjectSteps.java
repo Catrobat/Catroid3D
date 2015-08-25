@@ -18,6 +18,9 @@ import cucumber.api.java.en.When;
 
 public class ObjectSteps extends AndroidTestCase {
 	
+	private final String standardBarrelModelName = "Barrel01";
+	private final String standardTreeModelName = "Tree01";
+	
 	private Vector3 toPosition = new Vector3();
 
 	@When("^I click on the \"([^\"]*)\" image$")
@@ -52,16 +55,16 @@ public class ObjectSteps extends AndroidTestCase {
 	public void a_object_should_be_placed_in_the_middle_of_the_ground(String objectToPlace) {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
 		if(objectToPlace.contains("tree")) {
-			assertTrue(solo.isModelEntityAtPosition(Util.getModelDescriptor(MODEL.MODEL_PALM_TREE_01).getNameInSkinFile(), Math.createCenterPositionMatrix()));
+			assertTrue(solo.isEntityAtPosition(Util.getModelDescriptor(MODEL.MODEL_PALM_TREE_01).getNameInSkinFile(), Math.createCenterPositionMatrix()));
 		}
 		else if(objectToPlace.contains("plant01")) {
-			assertTrue(solo.isModelEntityAtPosition(Util.getModelDescriptor(MODEL.MODEL_TROPICAL_PLANT_01).getNameInSkinFile(), Math.createCenterPositionMatrix()));
+			assertTrue(solo.isEntityAtPosition(Util.getModelDescriptor(MODEL.MODEL_TROPICAL_PLANT_01).getNameInSkinFile(), Math.createCenterPositionMatrix()));
 		}
 		else if(objectToPlace.contains("plant02")) {
-			assertTrue(solo.isModelEntityAtPosition(Util.getModelDescriptor(MODEL.MODEL_TROPICAL_PLANT_02).getNameInSkinFile(), Math.createCenterPositionMatrix()));
+			assertTrue(solo.isEntityAtPosition(Util.getModelDescriptor(MODEL.MODEL_TROPICAL_PLANT_02).getNameInSkinFile(), Math.createCenterPositionMatrix()));
 		}
 		else if(objectToPlace.contains("barrel")) {
-			assertTrue(solo.isModelEntityAtPosition(Util.getModelDescriptor(MODEL.MODEL_BIG_WOOD_BARREL).getNameInSkinFile(), Math.createCenterPositionMatrix()));
+			assertTrue(solo.isEntityAtPosition(Util.getModelDescriptor(MODEL.MODEL_BIG_WOOD_BARREL).getNameInSkinFile(), Math.createCenterPositionMatrix()));
 		}
 		else {
 			throw new PendingException();
@@ -79,12 +82,11 @@ public class ObjectSteps extends AndroidTestCase {
 	@When("^I long click on the \"([^\"]*)\"$")
 	public void I_long_click_on_the_model(String model) {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
-		solo.clickLongOnObjectPostion(new Vector3(3.195f, 0.0f, -251.3f));
 		if(model.contains("tree")) {
-			solo.clickLongOnObjectModel("Tree01");
+			solo.clickLongOnEntity(standardTreeModelName);
 		}
 		else if(model.contains("barrel")) {
-			solo.clickLongOnObjectModel("Barrel01");
+			solo.clickLongOnEntity(standardBarrelModelName);
 		}
 		else {
 			throw new PendingException();
@@ -109,10 +111,10 @@ public class ObjectSteps extends AndroidTestCase {
 	public void the_model_should_be_removed_from_the_world_view(String model) {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
 		if(model.contains("tree")) {
-			solo.isModelEntityVisible("Tree01");
+			assertFalse(solo.isEntityVisible(standardTreeModelName));
 		}
 		else if(model.contains("barrel")) {
-			solo.isModelEntityVisible("Barrel01");
+			assertFalse(solo.isEntityVisible(standardBarrelModelName));
 		}
 		else {
 			throw new PendingException();
@@ -123,14 +125,31 @@ public class ObjectSteps extends AndroidTestCase {
 	public void I_drag_the_barrel_to_the_left() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
 		toPosition.set(200, 0, 200);
-		solo.sleep(500);
-		solo.dragObjectModelToPosition("Barrel01", toPosition);
+		solo.sleep(1000);
+		solo.dragEntityToPosition(standardBarrelModelName, toPosition);
 		solo.sleep(500);
 	}
 	
 	@Then("^the barrel should move to the corresponding position$")
 	public void the_barrel_should_move_to_the_corresponding_position() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
-		assertTrue(solo.isModelEntityAtPosition("Barrel01", Math.createPositionMatrix(toPosition)));
+		assertTrue(solo.isEntityAtPosition(standardBarrelModelName, Math.createPositionMatrix(toPosition)));
+	}
+	
+	@When("^I drag the barrel to the left off the ground$")
+	public void I_drag_the_barrel_to_the_left_off_the_ground() {
+		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
+		toPosition.set(600, 0, 200);
+		solo.isEntityFallingDown(standardBarrelModelName);
+		solo.sleep(1000);	
+		solo.dragEntityToPosition(standardBarrelModelName, toPosition);
+		solo.sleep(500);
+	}
+	
+	@And("^the barrel should fall down because of gravity$")
+	public void the_barrel_should_fall_down_because_of_gravity() {
+		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
+		solo.isEntityFallingDown(standardBarrelModelName);
+		assertTrue(solo.isEntityFallingDown(standardBarrelModelName));
 	}
 }

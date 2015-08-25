@@ -52,29 +52,38 @@ public class SoloLibgdxWrapper extends Solo {
 		}
 	}
 	
-	public boolean isModelEntityAtPosition(String modelName, Matrix4 position) {
-		Vector3 entityPosition = getModelEntityPosition(modelName);
+	public boolean isEntityAtPosition(String entityName, Matrix4 position) {
+		Vector3 entityPosition = getEntityPosition(entityName);
 		Vector3 positionToCheck = new Vector3();
 		position.getTranslation(positionToCheck);
-		if(entityPosition.epsilonEquals(positionToCheck, 0.5f)) {
+		if(entityPosition.epsilonEquals(positionToCheck, 5.0f)) {
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean isModelEntityVisible(String modelName) {
-		Entity entity = worldListener.getWorld().getEntity(modelName);
+	public boolean isEntityVisible(String entityName) {
+		Entity entity = worldListener.getWorld().getEntity(entityName);
 		if(entity == null) {
 			return false;
 		}
 		return true;
 	}
 	
-	public Vector3 getModelEntityPosition(String modelName) {
-		Entity entity = worldListener.getWorld().getEntity(modelName);
+	public Vector3 getEntityPosition(String entityName) {
+		Entity entity = worldListener.getWorld().getEntity(entityName);
 		Vector3 entityPosition = new Vector3();
-		entity.getObject().getTransformation().getTranslation(entityPosition);
+		entity.modelInstance.transform.getTranslation(entityPosition);
 		return entityPosition;
+	}
+	
+	public boolean isEntityFallingDown(String entityName) {
+		Entity entity = worldListener.getWorld().getEntity(entityName);
+		Vector3 velocity = entity.body.getLinearVelocity();
+		if(velocity.y < 0) {
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean isToggleOnOffButtonChecked(String buttonId) {
@@ -130,22 +139,22 @@ public class SoloLibgdxWrapper extends Solo {
 		return false;
 	}
 	
-	public void clickLongOnObjectModel(String modelName) {
-		clickLongOnObjectPostion(getModelEntityPosition(modelName));
+	public void clickLongOnEntity(String entityName) {
+		clickLongOnEntityPostion(getEntityPosition(entityName));
 	}
 	
-	public void clickLongOnObjectPostion(Vector3 objectPosition) {
-		Vector2 screenCoords = objectWorldCoordsToScreenCoords(objectPosition);
+	public void clickLongOnEntityPostion(Vector3 entityPosition) {
+		Vector2 screenCoords = entityWorldCoordsToScreenCoords(entityPosition);
 		this.clickLongOnScreen(screenCoords.x, screenCoords.y);
 	}
 	
-	public void dragObjectModelToPosition(String modelName, Vector3 newPosition) {
-		dragObjectToPosition(getModelEntityPosition(modelName), newPosition);
+	public void dragEntityToPosition(String entityName, Vector3 newPosition) {
+		dragEntityToPosition(getEntityPosition(entityName), newPosition);
 	}
 	
-	public void dragObjectToPosition(Vector3 objectPosition, Vector3 newPosition) {
-		Vector2 screenCoords = objectWorldCoordsToScreenCoords(objectPosition);
-		Vector2 newPositionScreenCoords = objectWorldCoordsToScreenCoords(newPosition);
+	public void dragEntityToPosition(Vector3 entityPosition, Vector3 newPosition) {
+		Vector2 screenCoords = entityWorldCoordsToScreenCoords(entityPosition);
+		Vector2 newPositionScreenCoords = entityWorldCoordsToScreenCoords(newPosition);
 		this.drag(screenCoords.x, newPositionScreenCoords.x, screenCoords.y, newPositionScreenCoords.y, 20);
 	}
 	
@@ -243,14 +252,16 @@ public class SoloLibgdxWrapper extends Solo {
 		drag(width/2f, width/2f, startPointY, endPointY, stepCount);	
 	}
 	
-	private Vector2 objectWorldCoordsToScreenCoords(Vector3 objectWorldCoords) {
+	private Vector2 entityWorldCoordsToScreenCoords(Vector3 entityWorldCoords) {
 		try {
 			BaseScreen screen = getActiveScreen();
 			if(screen instanceof ProjectBuildScreen)
 			{
 				GestureHandler gestureHandler = UtilTest.getFieldFromObject(screen, "gestureHandler", GestureHandler.class);
 				CollisionDetector collisionDetector = UtilTest.getFieldFromObject(gestureHandler, "collisionDetector", CollisionDetector.class);
-				return collisionDetector.worldGroundCoordsToScreenCoords(objectWorldCoords);
+				Vector2 entityScreenCoords = new Vector2(collisionDetector.worldGroundCoordsToScreenCoords(entityWorldCoords));
+				entityScreenCoords.y = Gdx.graphics.getHeight() - entityScreenCoords.y;
+				return entityScreenCoords;			
 			}
 		} catch(Exception e) {
 			Log.e(CucumberInstrumentation.TAG, e.toString());

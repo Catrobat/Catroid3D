@@ -55,6 +55,7 @@ public abstract class Object implements Serializable {
 	protected TEXTURE_TYPE textureType = TEXTURE_TYPE.TEXTURE_BEHIND;
 	protected OBJECT_TYPE objectType = OBJECT_TYPE.NORMAL;
 	protected int collisionFlags = 0;
+	public Vector3 localInertia = new Vector3();
 
 	public Object(String name, float mass, Matrix4 position) {
 		this.name = name;
@@ -132,10 +133,19 @@ public abstract class Object implements Serializable {
 
 	protected abstract btConvexShape createShape();
 
+	//	private Vector3 calculateLocalInertia(btCollisionShape shape) {
+	//		Vector3 localInertia = new Vector3();
+	//		if (mass == 0) {
+	//			localInertia = Vector3.Zero;
+	//		} else {
+	//			shape.calculateLocalInertia(mass, localInertia);
+	//		}
+	//		return localInertia;
+	//	}
+
 	private Vector3 calculateLocalInertia(btCollisionShape shape) {
-		Vector3 localInertia = new Vector3();
 		if (mass == 0) {
-			localInertia = Vector3.Zero;
+			localInertia.set(Vector3.Zero);
 		} else {
 			shape.calculateLocalInertia(mass, localInertia);
 		}

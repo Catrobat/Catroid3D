@@ -2,21 +2,21 @@
  *  Catroid: An on-device visual programming system for Android devices
  *  Copyright (C) 2010-2013 The Catrobat Team
  *  (<http://developer.catrobat.org/credits>)
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
  *  published by the Free Software Foundation, either version 3 of the
  *  License, or (at your option) any later version.
- *  
+ *
  *  An additional term exception under section 7 of the GNU Affero
  *  General Public License, version 3, is available at
  *  http://developer.catrobat.org/license_additional_term
- *  
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Affero General Public License for more details.
- *  
+ *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -27,6 +27,7 @@ import org.catrobat.catroid3d.R;
 import org.catrobat.catroid3d.WorldActivity;
 import org.catrobat.catroid3d.physics.Entity;
 import org.catrobat.catroid3d.ui.ObjectHandler;
+import org.catrobat.catroid3d.ui.screen.ProjectBuildScreen;
 
 import com.badlogic.gdx.physics.bullet.collision.btCollisionObject.CollisionFlags;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -48,8 +49,10 @@ public class ObjectDialogBox extends Table {
 		this.objectHandler = objectHandler;
 		collisionObjectButton = new CollisionObjectButton();
 		//add(collisionObjectButton);
-		add(new DeleteObjectButton());
-		add(new CancelObjectButton());
+		DeleteObjectButton deleteObjectButton = new DeleteObjectButton();
+		CancelObjectButton cancelObjectButton = new CancelObjectButton();
+		add(deleteObjectButton);
+		add(cancelObjectButton);
 		chooseCollisionObjectTable = new Table();
 		WorldActivity worldActivity = ProjectManager.getInstance().getWorldActivity();
 		chooseCollisionObjectTable.add(new ChooseCollisionObjectButton(
@@ -61,8 +64,12 @@ public class ObjectDialogBox extends Table {
 		chooseCollisionObjectTable.add(new ChooseCollisionObjectButton(worldActivity.getString(R.string.simple_object),
 				CollisionFlags.CF_STATIC_OBJECT | CollisionFlags.CF_NO_CONTACT_RESPONSE));
 		chooseCollisionObjectTable.setVisible(false);
-		worldActivity.getWorldListener().getProjectBuildScreen().getStage().addActor(chooseCollisionObjectTable);
-
+		ProjectBuildScreen projectBuildScreen = worldActivity.getWorldListener().getProjectBuildScreen();
+		projectBuildScreen.getStage().addActor(chooseCollisionObjectTable);
+		projectBuildScreen.putButton(ProjectManager.getInstance().getWorldActivity().getString(R.string.delete),
+				deleteObjectButton);
+		projectBuildScreen.putButton(ProjectManager.getInstance().getWorldActivity().getString(R.string.cancel),
+				cancelObjectButton);
 	}
 
 	public void setEntityAndShowObjectDialog(Entity entity) {

@@ -40,7 +40,6 @@ import org.catrobat.catroid3d.utils.Util;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.physics.bullet.collision.btCollisionObject.CollisionFlags;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class ProjectManager {
@@ -70,9 +69,9 @@ public class ProjectManager {
 				1000f, TEXTURE.TEXTURE_GRASS_01);
 		groundObject.setObjectType(OBJECT_TYPE.GROUND);
 
-		Object barrel01 = new ComplexAssetObject("Barrel01", 0f, Math.createPositionMatrix(0f, 0f, -200f),
+		Object barrel01 = new ComplexAssetObject("Barrel01", 10f, Math.createPositionMatrix(0f, 0f, -200f),
 				Util.getModelDescriptor(MODEL.MODEL_BIG_WOOD_BARREL));
-		barrel01.setCollisionFlags(CollisionFlags.CF_NO_CONTACT_RESPONSE);
+		//barrel01.setCollisionFlags(CollisionFlags.CF_NO_CONTACT_RESPONSE);
 		barrel01.setTextureType(TEXTURE_TYPE.NONE);
 
 		Object knight = new AnimatedAssetObject("Dog", 20f, Math.createPositionMatrix(200f, 2f, 250f).scl(2f),

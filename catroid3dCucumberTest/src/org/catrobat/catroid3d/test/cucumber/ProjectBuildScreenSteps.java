@@ -14,6 +14,7 @@ public class ProjectBuildScreenSteps extends AndroidTestCase {
 	@When("^I press the move-camera button$")
 	public void i_press_the_move_camera_button() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
+		solo.sleep(1000);
 		solo.clickOnButton(Constants.UI_MOVE_CAMERA_BUTTON);
 		solo.sleep(500);
 	}
@@ -33,6 +34,7 @@ public class ProjectBuildScreenSteps extends AndroidTestCase {
 	@When("^I press the move-object button$")
 	public void i_press_the_move_object_button() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
+		solo.sleep(1000);
 		solo.clickOnButton(Constants.UI_MOVE_OBJECT_BUTTON);
 		solo.sleep(500);
 	}
@@ -52,6 +54,7 @@ public class ProjectBuildScreenSteps extends AndroidTestCase {
 	@When("^I press the add-or-remove-ground button$")
 	public void i_press_the_add_or_remove_ground_button() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
+		solo.sleep(1000);
 		solo.clickOnButton(Constants.UI_GROUND_BUTTON);
 		solo.sleep(500);
 	}
@@ -97,7 +100,7 @@ public class ProjectBuildScreenSteps extends AndroidTestCase {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
 		solo.sleep(1000);
 		solo.clickOnButton(Constants.UI_ADD_OBJECT_BUTTON);
-		solo.sleep(1000);
+		solo.sleep(500);
 	}
 	
 	@Then("^the choose object split pane should show up$")

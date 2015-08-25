@@ -58,8 +58,9 @@ public class CollisionDetector {
 	}
 
 	public Vector2 worldGroundCoordsToScreenCoords(Vector3 worldCoords) {
-		collisionCamera.project(worldCoords);
-		return new Vector2(worldCoords.x, worldCoords.y);
+		Vector3 worldCoordsCpy = worldCoords.cpy();
+		collisionCamera.project(worldCoordsCpy);
+		return new Vector2(worldCoordsCpy.cpy().x, worldCoordsCpy.cpy().y);
 	}
 
 	public Entity hasHitObjectFromScreenCoords(float screenX, float screenY) {
