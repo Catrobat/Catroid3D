@@ -102,7 +102,7 @@ public class ObjectHandler {
 		float mass = 0f;
 		int flags = CollisionFlags.CF_STATIC_OBJECT | CollisionFlags.CF_NO_CONTACT_RESPONSE;
 		if (modelDescriptor.equals(Util.getModelDescriptor(MODEL.MODEL_BIG_WOOD_BARREL))) {
-			mass = 10f;
+			mass = 100f;
 			flags = 0;
 		}
 		if (modelDescriptor.equals(Util.getModelDescriptor(MODEL.MODEL_PALM_TREE_01))) {
@@ -130,7 +130,7 @@ public class ObjectHandler {
 		WorldActivity worldActivity = ProjectManager.getInstance().getWorldActivity();
 		ChooseCategoryObjectButton chooseCategoryGroundObjectButton = addChooseObjectTableEntry(
 				worldActivity.getString(R.string.ground), new MODEL[] { MODEL.MODEL_PALM_TREE_01,
-					MODEL.MODEL_TROPICAL_PLANT_01, MODEL.MODEL_TROPICAL_PLANT_02, MODEL.MODEL_PALM_PLANT_01 });
+						MODEL.MODEL_TROPICAL_PLANT_01, MODEL.MODEL_TROPICAL_PLANT_02, MODEL.MODEL_PALM_PLANT_01 });
 		ChooseCategoryObjectButton chooseCategoryMiscellaneousObjectButton = addChooseObjectTableEntry(
 				worldActivity.getString(R.string.miscellaneous), new MODEL[] { MODEL.MODEL_BIG_WOOD_BARREL });
 		Table chooseCategoryObjectTable = new Table(skin);

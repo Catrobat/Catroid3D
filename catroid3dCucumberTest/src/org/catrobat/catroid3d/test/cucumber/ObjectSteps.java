@@ -21,7 +21,7 @@ public class ObjectSteps extends AndroidTestCase {
 	private final String standardBarrelModelName = "Barrel01";
 	private final String standardTreeModelName = "Tree01";
 	
-	private Vector3 toPosition = new Vector3();
+	private Vector3 positionVector = new Vector3();
 
 	@When("^I click on the \"([^\"]*)\" image$")
 	public void I_click_on_the_object_image(String objectImage) {
@@ -124,25 +124,24 @@ public class ObjectSteps extends AndroidTestCase {
 	@When("^I drag the barrel to the left$")
 	public void I_drag_the_barrel_to_the_left() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
-		toPosition.set(200, 0, 200);
+		positionVector.set(200, 0, 200);
 		solo.sleep(1000);
-		solo.dragEntityToPosition(standardBarrelModelName, toPosition);
+		solo.dragEntityToPosition(standardBarrelModelName, positionVector);
 		solo.sleep(500);
 	}
 	
 	@Then("^the barrel should move to the corresponding position$")
 	public void the_barrel_should_move_to_the_corresponding_position() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
-		assertTrue(solo.isEntityAtPosition(standardBarrelModelName, Math.createPositionMatrix(toPosition)));
+		assertTrue(solo.isEntityAtPosition(standardBarrelModelName, Math.createPositionMatrix(positionVector)));
 	}
 	
 	@When("^I drag the barrel to the left off the ground$")
 	public void I_drag_the_barrel_to_the_left_off_the_ground() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
-		toPosition.set(600, 0, 200);
-		solo.isEntityFallingDown(standardBarrelModelName);
+		positionVector.set(600, 0, 200);
 		solo.sleep(1000);	
-		solo.dragEntityToPosition(standardBarrelModelName, toPosition);
+		solo.dragEntityToPosition(standardBarrelModelName, positionVector);
 		solo.sleep(500);
 	}
 	

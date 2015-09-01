@@ -6,10 +6,10 @@ import java.util.Map;
 
 import cucumber.api.CucumberOptions;
 
-@CucumberOptions(features = {"features"}, 
-					format = {"pretty", "html:/sdcard/cucumber/report", 
+@CucumberOptions(features = {"features/physics"}, 
+					format = {"pretty"/*, "html:/sdcard/cucumber/report", 
 										"json:target_json/cucumber.json",
-										"junit:taget_junit/cucumber.xml"})
+										"junit:taget_junit/cucumber.xml"*/})
 public final class Cucumber {
 	public static final String KEY_SOLO_WRAPPER = "KEY_SOLO_WRAPPER";
 	

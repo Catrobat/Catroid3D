@@ -86,6 +86,12 @@ public class SoloLibgdxWrapper extends Solo {
 		return false;
 	}
 	
+	public boolean checkEntityCollision(String entityName, String entityNameToHit) {
+		Entity entity = worldListener.getWorld().getEntity(entityName);
+		Entity entityToHit = worldListener.getWorld().getEntity(entityNameToHit);
+		return entityToHit.body.checkCollideWith(entity.body);
+	}
+	
 	public boolean isToggleOnOffButtonChecked(String buttonId) {
 		try {
 			Button buttonToClick = getActiveScreen().getButton(buttonId);
