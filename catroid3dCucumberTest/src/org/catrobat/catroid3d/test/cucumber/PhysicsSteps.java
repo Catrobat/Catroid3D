@@ -34,8 +34,8 @@ public class PhysicsSteps extends AndroidTestCase {
 		assertTrue(solo.isEntityAtPosition(Util.getModelDescriptor(MODEL.MODEL_BIG_WOOD_BARREL).getNameInSkinFile(), Math.createCenterPositionMatrix()));
 	}
 	
-	@When("^I move the barrel torwards the second barrel and hit it$")
-	public void I_move_the_barrel_torwards_the_second_barrel_and_hit_it() {
+	@When("^I move the barrel towards the second barrel and hit it$")
+	public void I_move_the_barrel_towards_the_second_barrel_and_hit_it() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
 		positionVector.set(0f, 0f, -400f);
 		solo.sleep(1000);
@@ -50,8 +50,8 @@ public class PhysicsSteps extends AndroidTestCase {
 		assertFalse(solo.isEntityAtPosition(barrelModelNameToHit, Math.createPositionMatrix(new Vector3(0, 0, -200))));
 	}
 	
-	@When("^I move the barrel torwards the tree and hit it$")
-	public void I_move_the_barrel_torwards_the_tree_and_hit_it() {
+	@When("^I move the barrel towards the tree and hit it$")
+	public void I_move_the_barrel_towards_the_tree_and_hit_it() {
 		SoloLibgdxWrapper solo = (SoloLibgdxWrapper) Cucumber.get(Cucumber.KEY_SOLO_WRAPPER);
 		positionVector.set(-200f, 0f, 300f);
 		solo.sleep(1000);

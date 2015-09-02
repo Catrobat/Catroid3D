@@ -36,11 +36,11 @@ Feature: Dynamic object with mass collides with other objects
 	When I press the move-object button
   	
   Scenario: Dynamic object with mass collides with another dynamic object with mass
-  	When I move the barrel torwards the second barrel and hit it
+  	When I move the barrel towards the second barrel and hit it
   	Then the second barrel should be pushed away in the same direction
   	
   Scenario: Dynamic object with mass collides with a static object
-  	When I move the barrel torwards the tree and hit it
+  	When I move the barrel towards the tree and hit it
   	Then the tree should stay at its position
   	
   	
