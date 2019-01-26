@@ -1,0 +1,139 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:2:1-22:12
+INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:2:1-22:12
+INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:2:1-22:12
+INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:2:1-22:12
+MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\67c916248a2efcba7b6414527187066a\AndroidManifest.xml:17:1-30:12
+MERGED from [com.github.mrengineer13:snackbar:1.2.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\snackbar-1.2.0.aar\96e7f4a281438406f2565db1d2860a45\AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support:mediarouter-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-27.1.0.aar\11c2afd92ab01cb399605e3f1ac394ca\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:design:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\design-27.1.0.aar\ca46d1b10fca184e3029f3e5b08396d6\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customtabs:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\customtabs-27.1.0.aar\951fc47fe534b326865b4b08055443db\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:appcompat-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.0.aar\497810c09e5c7a70b43312e5ffcd48a1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.0.aar\76578f88400b49073a75131de99f0c57\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-v4:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.0.aar\2a81bcb2dc2267fa1eb2859c871228e9\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.0.aar\082b28f7890e012cf4f3c6fb6e8533d7\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.0.aar\de01967d405cff95f75f01a22d571b2e\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\transition-27.1.0.aar\9365c13fe859a12d26c01dddda6b46ff\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:palette-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\palette-v7-27.1.0.aar\7fc5b3583abc5e8aa76579431ae00a3d\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.0.aar\1c626591f199ccb0f1c158217b991993\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.0.aar\2162a688af54251740c58a9e965a2810\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.0.aar\b862ea179478ed01c54ab19977061325\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.0.aar\779e640f097b7d0f2d81c4bee9f989e9\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.0.aar\70f0f830868c33c5258a73d6489a7bff\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.0.aar\ca683f98e28bd81df8197fd2f6c7ffe7\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\0cd2fd58153ee19f61c0c88dc743b21b\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\40700ab92c11817cee41ecf1833e315a\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\17eb789325cbb82983cffeec8b96ec4c\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\ddf04124a17a4d749e4d9b041a5d6860\AndroidManifest.xml:17:1-22:12
+INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:2:1-22:12
+INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:2:1-22:12
+INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:2:1-22:12
+	package
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:3:5-35
+		INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+		INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+	android:versionName
+		INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:2:1-22:12
+		INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+	android:versionCode
+		INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:2:1-22:12
+		INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:2:11-69
+application
+ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:5:5-20:19
+MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\67c916248a2efcba7b6414527187066a\AndroidManifest.xml:26:5-28:38
+MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\67c916248a2efcba7b6414527187066a\AndroidManifest.xml:26:5-28:38
+MERGED from [com.github.mrengineer13:snackbar:1.2.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\snackbar-1.2.0.aar\96e7f4a281438406f2565db1d2860a45\AndroidManifest.xml:12:5-20
+MERGED from [com.github.mrengineer13:snackbar:1.2.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\snackbar-1.2.0.aar\96e7f4a281438406f2565db1d2860a45\AndroidManifest.xml:12:5-20
+	android:screenOrientation
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:9:9-46
+	android:supportsRtl
+		ADDED from [com.github.johnpersano:supertoasts:2.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\67c916248a2efcba7b6414527187066a\AndroidManifest.xml:28:9-35
+	android:label
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:8:9-41
+	android:icon
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:7:9-45
+	android:allowBackup
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:6:9-35
+	android:theme
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:10:9-39
+activity#org.catrobat.catroid.WorldActivity
+ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:11:9-19:20
+	android:label
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:14:13-45
+	android:configChanges
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:13:13-107
+	android:name
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:12:13-62
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:15:13-18:29
+action#android.intent.action.MAIN
+ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:16:17-69
+	android:name
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:16:25-66
+category#android.intent.category.LAUNCHER
+ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:17:17-77
+	android:name
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml:17:27-74
+uses-sdk
+INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\67c916248a2efcba7b6414527187066a\AndroidManifest.xml:22:5-24:41
+MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\67c916248a2efcba7b6414527187066a\AndroidManifest.xml:22:5-24:41
+MERGED from [com.github.mrengineer13:snackbar:1.2.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\snackbar-1.2.0.aar\96e7f4a281438406f2565db1d2860a45\AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.mrengineer13:snackbar:1.2.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\snackbar-1.2.0.aar\96e7f4a281438406f2565db1d2860a45\AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:mediarouter-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-27.1.0.aar\11c2afd92ab01cb399605e3f1ac394ca\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:mediarouter-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-27.1.0.aar\11c2afd92ab01cb399605e3f1ac394ca\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\design-27.1.0.aar\ca46d1b10fca184e3029f3e5b08396d6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\design-27.1.0.aar\ca46d1b10fca184e3029f3e5b08396d6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customtabs:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\customtabs-27.1.0.aar\951fc47fe534b326865b4b08055443db\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customtabs:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\customtabs-27.1.0.aar\951fc47fe534b326865b4b08055443db\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.0.aar\497810c09e5c7a70b43312e5ffcd48a1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.0.aar\497810c09e5c7a70b43312e5ffcd48a1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.0.aar\76578f88400b49073a75131de99f0c57\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.0.aar\76578f88400b49073a75131de99f0c57\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.0.aar\2a81bcb2dc2267fa1eb2859c871228e9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.0.aar\2a81bcb2dc2267fa1eb2859c871228e9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.0.aar\082b28f7890e012cf4f3c6fb6e8533d7\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.0.aar\082b28f7890e012cf4f3c6fb6e8533d7\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.0.aar\de01967d405cff95f75f01a22d571b2e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.0.aar\de01967d405cff95f75f01a22d571b2e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\transition-27.1.0.aar\9365c13fe859a12d26c01dddda6b46ff\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\transition-27.1.0.aar\9365c13fe859a12d26c01dddda6b46ff\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:palette-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\palette-v7-27.1.0.aar\7fc5b3583abc5e8aa76579431ae00a3d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:palette-v7:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\palette-v7-27.1.0.aar\7fc5b3583abc5e8aa76579431ae00a3d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.0.aar\1c626591f199ccb0f1c158217b991993\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.0.aar\1c626591f199ccb0f1c158217b991993\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.0.aar\2162a688af54251740c58a9e965a2810\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.0.aar\2162a688af54251740c58a9e965a2810\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.0.aar\b862ea179478ed01c54ab19977061325\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.0.aar\b862ea179478ed01c54ab19977061325\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.0.aar\779e640f097b7d0f2d81c4bee9f989e9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.0.aar\779e640f097b7d0f2d81c4bee9f989e9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.0.aar\70f0f830868c33c5258a73d6489a7bff\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.0.aar\70f0f830868c33c5258a73d6489a7bff\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.0.aar\ca683f98e28bd81df8197fd2f6c7ffe7\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.0.aar\ca683f98e28bd81df8197fd2f6c7ffe7\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\0cd2fd58153ee19f61c0c88dc743b21b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\0cd2fd58153ee19f61c0c88dc743b21b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\40700ab92c11817cee41ecf1833e315a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\40700ab92c11817cee41ecf1833e315a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\17eb789325cbb82983cffeec8b96ec4c\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\17eb789325cbb82983cffeec8b96ec4c\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\ddf04124a17a4d749e4d9b041a5d6860\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\buzz\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\ddf04124a17a4d749e4d9b041a5d6860\AndroidManifest.xml:20:5-44
+INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+		INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+		ADDED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml
+		INJECTED from E:\Uni\Bachelor_2018\Catroid3dRepo\Catroid3d\AndroidManifest.xml

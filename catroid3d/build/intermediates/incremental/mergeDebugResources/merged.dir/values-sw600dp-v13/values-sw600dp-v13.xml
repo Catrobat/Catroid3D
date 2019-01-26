@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="abc_action_bar_content_inset_material">24dp</dimen>
+    <dimen name="abc_action_bar_content_inset_with_nav">80dp</dimen>
+    <dimen name="abc_action_bar_default_height_material">64dp</dimen>
+    <dimen name="abc_action_bar_default_padding_end_material">8dp</dimen>
+    <dimen name="abc_action_bar_default_padding_start_material">8dp</dimen>
+    <dimen name="abc_config_prefDialogWidth">580dp</dimen>
+    <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
+    <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
+    <dimen name="activity_horizontal_margin">24dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="design_navigation_max_width">320dp</dimen>
+    <dimen name="design_snackbar_action_inline_max_width">0dp</dimen>
+    <dimen name="design_snackbar_background_corner_radius">2dp</dimen>
+    <dimen name="design_snackbar_extra_spacing_horizontal">24dp</dimen>
+    <dimen name="design_snackbar_max_width">576dp</dimen>
+    <dimen name="design_snackbar_min_width">320dp</dimen>
+    <dimen name="design_snackbar_padding_vertical_2lines">@dimen/design_snackbar_padding_vertical</dimen>
+    <dimen name="design_tab_scrollable_min_width">160dp</dimen>
+    <item name="mr_dialog_fixed_width_major" type="dimen">60%</item>
+    <item name="mr_dialog_fixed_width_minor" type="dimen">90%</item>
+    <dimen name="vertical_margin_bottom">16dp</dimen>
+    <dimen name="vertical_margin_top">16dp</dimen>
+    <integer name="design_snackbar_text_max_lines">1</integer>
+    <style name="SnackBar"/>
+    <style name="SnackBar.SnackBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:maxHeight">80dp</item>
+        <item name="android:minWidth">288dp</item>
+        <item name="android:maxWidth">568dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/sb__tablet_bkgnd</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
+        <item name="android:layout_gravity">bottom|left</item>
+    </style>
+    <style name="Widget.Design.TabLayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabGravity">center</item>
+        <item name="tabMode">fixed</item>
+    </style>
+</resources>
