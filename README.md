@@ -2,7 +2,7 @@
 
 Experimental spike of a 3D version of Pocket Code / Catroid for Android. 
 
-Note that This is just a very preliminary / throw-away proof of concept.
+Note that this is just a very preliminary / throw-away proof of concept.
 
 If you are interested in contributing and/or working on this 3D version, contact wolfgang.slany@catrobat.org
 
